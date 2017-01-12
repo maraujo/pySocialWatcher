@@ -1,0 +1,2 @@
+(A) Make  'location_types' changeble in the input
+(A) Use sqlite-like to save data
