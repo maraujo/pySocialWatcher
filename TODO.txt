@@ -1,2 +1,3 @@
 (A) Make  'location_types' changeble in the input
 (A) Use sqlite-like to save data
+(B) Force to rotate between tokens, not just the first who is available (implemented now)
