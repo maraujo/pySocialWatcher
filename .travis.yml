@@ -1,19 +1,21 @@
 sudo: true
-
 language: python
 
 python:
-  - 2.7
-
+  - "2.7"
+  - "3.3"
 before_install: cd tests
-
 install:
-  - pip install enum34
+  # Install conda
   - sudo pip install conda
+  # install deps
   - sudo conda init
-  - while read requirement; do conda install --yes $requirement; done < requirements.txt
-  - pip install codecov
-
+  - sudo conda update conda --yes
+  - deps='pip numpy pandas requests nose numpydoc sphinx'
+  - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
+  - export PATH=$HOME/py/bin:$PATH
+  # install your own package into the environment
+  - pip install -r ../requirements.txt
 script:
   - coverage run tests.py
 
