@@ -8,7 +8,7 @@ python:
 before_install: cd tests
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r ../requirements.txt
   - pip install codecov
 
 script:
