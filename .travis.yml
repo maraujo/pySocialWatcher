@@ -8,7 +8,9 @@ python:
 before_install: cd tests
 
 install:
-  - pip install -r ../requirements.txt
+  - sudo pip install conda
+  - sudo conda init
+  - while read requirement; do conda install --yes $requirement; done < requirements.txt
   - pip install codecov
 
 script:
