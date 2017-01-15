@@ -20,7 +20,8 @@ import requests
 class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
-        self.crawler.load_token_file(get_abs_file_path_in_src_folder("tokens.csv"))
+        # self.crawler.load_token_file(get_abs_file_path_in_src_folder("tokens.csv"))
+        self.crawler.load_token_file(get_abs_file_path_in_src_folder("facebook_tokens_example.csv"))
 
     def test_load_tokens_file(self):
         constants.TOKENS = []
