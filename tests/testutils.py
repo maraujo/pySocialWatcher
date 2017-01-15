@@ -6,7 +6,7 @@ from pandas.util.testing import assert_index_equal
 import ast
 
 ROOT_FOLDER_PATH = os.path.abspath("../")
-SRC_FOLDER_PATH = ROOT_FOLDER_PATH + "/pyfacebookmarketingcrawler/"
+SRC_FOLDER_PATH = ROOT_FOLDER_PATH + "/pysocialwatcher/"
 
 
 def get_abs_file_path_in_src_folder(file_name):

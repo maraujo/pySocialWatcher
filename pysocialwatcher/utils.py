@@ -65,9 +65,9 @@ def call_request_fb(target_request, token, account):
         'targeting_spec': json.dumps(target_request),
         'access_token': token
     }
-    print_info("\tSending in request: {}".format(payload))
+    print_info("\tSending in request: {}".format(payload["targeting_spec"]))
     url = constants.REACHESTIMATE_URL.format(account)
-    response = send_request(url,payload)
+    response = send_request(url, payload)
     return response.content
 
 

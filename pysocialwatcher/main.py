@@ -3,9 +3,7 @@ import sys
 
 
 from utils import *
-
-
-class PythonFacebookMarketingCrawler:
+class PySocialWatcher:
 
     @staticmethod
     def load_token_file(token_file_path):
@@ -13,7 +11,7 @@ class PythonFacebookMarketingCrawler:
             for line in token_file:
                 token = line.split(",")[0].strip()
                 account_number = line.split(",")[1].strip()
-                PythonFacebookMarketingCrawler.add_token_and_account_number(token,account_number)
+                PySocialWatcher.add_token_and_account_number(token, account_number)
 
     @staticmethod
     def add_token_and_account_number(token,account_number):
@@ -60,12 +58,12 @@ class PythonFacebookMarketingCrawler:
 
     @staticmethod
     def print_interests_given_query(interest_query):
-        interests = PythonFacebookMarketingCrawler.get_interests_given_query(interest_query)
+        interests = PySocialWatcher.get_interests_given_query(interest_query)
         print_dataframe(interests)
 
     @staticmethod
     def print_behavior_dataframe():
-        behaviors = PythonFacebookMarketingCrawler.get_behavior_dataframe()
+        behaviors = PySocialWatcher.get_behavior_dataframe()
         print_dataframe(behaviors)
 
     @staticmethod
@@ -102,7 +100,7 @@ class PythonFacebookMarketingCrawler:
         while not dataframe_with_uncompleted_requests.empty:
             print_collecting_progress(dataframe_with_uncompleted_requests, collection_dataframe)
             # Trigger requests
-            rows_to_request = dataframe_with_uncompleted_requests.head(min(constants.NUMBER_OF_REQUESTS_PER_BUCKET, constants.SAVE_EVERY))
+            rows_to_request = dataframe_with_uncompleted_requests.head(len(constants.TOKENS))
             responses_list = trigger_request_process_and_return_response(rows_to_request)
             # Save response in collection_dataframe
             save_response_in_dataframe(responses_list, collection_dataframe)
@@ -131,14 +129,15 @@ class PythonFacebookMarketingCrawler:
 
     @staticmethod
     def run_data_collection(json_input_file_path):
-        input_data_json = PythonFacebookMarketingCrawler.read_json_file(json_input_file_path)
-        PythonFacebookMarketingCrawler.check_input_integrity(input_data_json)
-        collection_dataframe = PythonFacebookMarketingCrawler.build_collection_dataframe(input_data_json)
-        collection_dataframe = PythonFacebookMarketingCrawler.perform_collection_data_on_facebook(collection_dataframe)
-        save_after_collecting_dataframe(collection_dataframe)
+        input_data_json = PySocialWatcher.read_json_file(json_input_file_path)
+        PySocialWatcher.check_input_integrity(input_data_json)
+        collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json)
+        save_temporary_dataframe(collection_dataframe)
         sys.exit(0)
-        collection_dataframe = PythonFacebookMarketingCrawler.post_process_collection(collection_dataframe)
-        PythonFacebookMarketingCrawler.save_collection_dataframe(collection_dataframe)
+        collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
+        save_after_collecting_dataframe(collection_dataframe)
+        collection_dataframe = PySocialWatcher.post_process_collection(collection_dataframe)
+        PySocialWatcher.save_collection_dataframe(collection_dataframe)
         return collection_dataframe
 
     @staticmethod

@@ -1,11 +1,11 @@
 from setuptools import setup
 
-setup(name='pyfacebookmarketingcrawler',
+setup(name='pysocialwatcher',
       version='0.0',
-      description='A Facebook Marketing Crawler Data API',
+      description='pySocialWatcher : Social Watcher through Facebook Marketing API',
       url='https://github.com/maraujo/pyFacebookMarketingCrawler',
       author='Matheus Araujo - QCRI-HBKU',
       author_email='maraujo@hbku.edu.qa',
       license='',
-      packages=['pyfacebookmarketingcrawler'],
+      packages=['pysocialwatcher'],
       zip_safe=False)
