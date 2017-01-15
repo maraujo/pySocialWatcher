@@ -8,13 +8,11 @@ install:
   # Install conda
   - sudo pip install --upgrade pip enum34
   - sudo pip install ruamel.yaml 
-  - sudo pip install pycoast
+  - sudo pip install pycosat
   - sudo pip install conda
   - sudo pip install requests
-  - sudo pip install urllib3 
+  - sudo pip install urllib3
   # install deps
-  - sudo conda init
-  - sudo conda update conda --yes
   - deps='pip numpy pandas requests'
   - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
   - export PATH=$HOME/py/bin:$PATH
