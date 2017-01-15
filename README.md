@@ -1,4 +1,4 @@
-# pySocialWatcher: Social Watcher on Facebook Marketing API [![Build Status](https://travis-ci.org/maraujo/pyFacebookMarketingCrawler.svg?branch=master)](https://travis-ci.org/maraujo/pyFacebookMarketingCrawler)
+# pySocialWatcher: Social Watcher on Facebook Marketing API
 **Package Name:** pySocialWatcher
 
 **Facebook Ads API version supported:** 2.8
