@@ -29,6 +29,18 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
 1. Static input json format to make you experiments easily reproducible.
 2. Support multiple Facebook tokens.
 3. Tokens are processed in parallel to speedup data collection.
+3. Comples logic queries in the Facebook Marketing API with 'or', 'and', 'not', check the input_examples.
+4. Current supported fields:
+    ```
+    "interests"
+    "behaviors"
+    "education_statuses"
+    "family_statuses"
+    "locales"
+    "genders"
+    "age_min"
+    "age_max"
+    ```
 
 #### Input Json Format Example
     {
