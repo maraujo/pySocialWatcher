@@ -11,4 +11,5 @@
 tests/.coverage
 
 tokens.csv
+credentials.csv
 build

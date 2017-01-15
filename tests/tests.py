@@ -21,12 +21,12 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
         # self.crawler.load_token_file(get_abs_file_path_in_src_folder("tokens.csv"))
-        self.crawler.load_token_file(get_abs_file_path_in_src_folder("facebook_tokens_example.csv"))
+        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
 
     def test_load_tokens_file(self):
         constants.TOKENS = []
         self.assertListEqual(constants.TOKENS, [])
-        self.crawler.load_token_file(get_abs_file_path_in_src_folder("facebook_tokens_example.csv"))
+        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
         self.assertEqual(len(constants.TOKENS), 2)
         self.assertEqual(constants.TOKENS[0][0], "AEwqewe23ada331asdzxcZXcssdae2qasZCdsr4w5fgdfg56rgfddfSDfSDfasqwq23421123eadadzxwe4234eqdasdsafDwew4ASda231awsad23adczxwe3ADAdadxzd21312sada23dfdBvBHgvhf")
         self.assertEqual(constants.TOKENS[0][1],  "13466789874")

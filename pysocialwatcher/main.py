@@ -6,7 +6,7 @@ from utils import *
 class PySocialWatcher:
 
     @staticmethod
-    def load_token_file(token_file_path):
+    def load_credentials_file(token_file_path):
         with open(token_file_path, "r") as token_file:
             for line in token_file:
                 token = line.split(",")[0].strip()
@@ -62,7 +62,7 @@ class PySocialWatcher:
         print_dataframe(interests)
 
     @staticmethod
-    def print_behavior_dataframe():
+    def print_behaviors_list():
         behaviors = PySocialWatcher.get_behavior_dataframe()
         print_dataframe(behaviors)
 
