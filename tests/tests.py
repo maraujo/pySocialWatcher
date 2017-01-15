@@ -43,7 +43,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
             send_request("http://wasdasww.gaasdoogle.casdasdadxzom", params={})
         self.assertTrue(context.exception, RequestException)
 
-    # @unittest.skip("Test Behavior List Skipped due no tokens")
+    @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
     def test_get_behavior_dataframe(self):
         behavior_dataframe = self.crawler.get_behavior_dataframe()
         behavior_ids = behavior_dataframe["behavior_id"].values
@@ -51,7 +51,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         self.assertTrue("6025000826583" in behavior_ids)
         self.assertTrue("6013017308783" in behavior_ids)
 
-    # @unittest.skip("Test Interest Given Name Skipped due no tokens")
+    @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
     def test_get_interest_given_name(self):
         interests_dataframe = self.crawler.get_interests_given_query("obesity")
         interests_names = interests_dataframe["name"].values
