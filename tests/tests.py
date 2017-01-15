@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
 from pyfacebookmarketingcrawler.main import PythonFacebookMarketingCrawler
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.append('../pyfacebookmarketingcrawler')
 import pyfacebookmarketingcrawler.constants as constants
 from pyfacebookmarketingcrawler.utils import *
 from testutils import *
