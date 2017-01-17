@@ -65,7 +65,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
     def test_build_collection_dataframe(self):
         json_data = self.crawler.read_json_file(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
         dataframe = self.crawler.build_collection_dataframe(json_data)
-        test_dataframe = load_test_dataframe("resources/quick_example_dataframe_skeleton.csv")
+        test_dataframe = load_dataframe_from_file("resources/quick_example_dataframe_skeleton.csv")
         assert_data_frame_almost_equal(dataframe,test_dataframe)
 
 if __name__ == '__main__':

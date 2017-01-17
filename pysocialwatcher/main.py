@@ -112,15 +112,10 @@ class PySocialWatcher:
             # Update not_completed_experiments
             dataframe_with_uncompleted_requests = collection_dataframe[pd.isnull(collection_dataframe["response"])]
         print_info("Data Collection Complete")
+        save_temporary_dataframe(collection_dataframe)
+        post_process_collection(collection_dataframe)
+        save_after_collecting_dataframe(collection_dataframe)
         return collection_dataframe
-
-    @staticmethod
-    def post_process_collection(collection_dataframe):
-        return ""
-
-    @staticmethod
-    def save_collection_dataframe(collection_dataframe):
-        pass
 
     @staticmethod
     def check_input_integrity(input_data_json):
@@ -135,14 +130,13 @@ class PySocialWatcher:
         save_temporary_dataframe(collection_dataframe)
         sys.exit(0)
         collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
-        save_after_collecting_dataframe(collection_dataframe)
-        collection_dataframe = PySocialWatcher.post_process_collection(collection_dataframe)
-        PySocialWatcher.save_collection_dataframe(collection_dataframe)
         return collection_dataframe
 
     @staticmethod
-    def load_data_collection(json_input_file_path):
-        pass
+    def load_data_and_continue_collection(input_file_path):
+        collection_dataframe = load_dataframe_from_file(input_file_path)
+        collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
+        return  collection_dataframe
 
     @staticmethod
     def config(sleep_time = 8, save_every = 300, save_after_empty_dataframe = False):

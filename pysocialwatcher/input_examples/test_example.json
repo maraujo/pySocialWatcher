@@ -1,5 +1,8 @@
 {   "name": "Luxury in Bahrein and Argelia",
-    "location": ["DZ","BH"],
+    "geo_locations": [
+      { "name": "countries", "value": ["DZ"], "location_type":["home"] },
+      { "name": "countries", "value": ["BH"], "location_type":["recent"] }
+    ],
     "genders": [0],
     "ages_ranges": [
         {"min":18, "max":24},

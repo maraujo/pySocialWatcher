@@ -12,6 +12,7 @@ import numpy
 import requests
 import traceback
 import sys
+import ast
 
 coloredlogs.install(level=logging.INFO)
 
@@ -112,8 +113,22 @@ def check_exception(p):
     if p.exitcode != 0:
         raise FatalException("Fatar Error: Check stacktrace for clue. No way to proceed from here.")
 
+
 def print_info(message):
     logging.info(message)
+
+
+def unstrict_literal_eval(string):
+    try:
+        value = ast.literal_eval(string)
+        return value
+    except ValueError:
+        return string
+
+
+def load_dataframe_from_file(file_path):
+    dataframe = pd.DataFrame.from_csv(file_path)
+    return dataframe.applymap(unstrict_literal_eval)
 
 
 def save_response_in_dataframe(shared_queue_list, df):
@@ -124,7 +139,7 @@ def save_response_in_dataframe(shared_queue_list, df):
 
 
 def save_temporary_dataframe(dataframe):
-    print_info("Saving temporary file")
+    print_info("Saving temporary file: " + constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
     dataframe.to_csv(constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
 
 
@@ -178,25 +193,30 @@ def generate_collection_request_from_combination(combination, name):
     return dataframe_row
 
 
-def select_common_fields_in_targeting(targeting, input_dictionary):
-    # Selecting Countries
-    country = input_dictionary[constants.INPUT_LOCATION_FIELD]
-    targeting["geo_locations"] = {
-        "countries": [country],
-        "location_types": ["home"]  # TODO: make this changeble
+def select_common_fields_in_targeting(targeting, input_combination_dictionary):
+    # Selecting Geolocation
+    geo_location = input_combination_dictionary[constants.INPUT_GEOLOCATION_FIELD]
+    if geo_location.has_key(constants.INPUT_GEOLOCATION_LOCATION_TYPE_FIELD):
+        location_type = geo_location[constants.INPUT_GEOLOCATION_LOCATION_TYPE_FIELD]
+    else:
+        location_type = constants.DEFAULT_GEOLOCATION_LOCATION_TYPE_FIELD
+
+    targeting[constants.API_GEOLOCATION_FIELD] = {
+        geo_location["name"]: geo_location["value"],
+        constants.INPUT_GEOLOCATION_LOCATION_TYPE_FIELD: location_type
     }
     # Selecting Age
-    age_range = input_dictionary[constants.INPUT_AGE_RANGE_FIELD]
+    age_range = input_combination_dictionary[constants.INPUT_AGE_RANGE_FIELD]
     targeting[constants.API_MIN_AGE_FIELD] = age_range[constants.MIN_AGE] if age_range.has_key(constants.MIN_AGE) else None
     targeting[constants.API_MAX_AGE_FIELD] = age_range[constants.MAX_AGE] if age_range.has_key(constants.MAX_AGE) else None
 
     # Selecting genders
-    gender = input_dictionary[constants.INPUT_GENDER_FIELD]
+    gender = input_combination_dictionary[constants.INPUT_GENDER_FIELD]
     targeting[constants.API_GENDER_FIELD] = [gender]
 
     # Selecting Languages
-    if input_dictionary.has_key(constants.INPUT_LANGUAGE_FIELD):
-        languages = input_dictionary[constants.INPUT_LANGUAGE_FIELD]
+    if input_combination_dictionary.has_key(constants.INPUT_LANGUAGE_FIELD):
+        languages = input_combination_dictionary[constants.INPUT_LANGUAGE_FIELD]
         if languages:
             targeting[constants.API_LANGUAGES_FIELD] = languages["or"]
     else:
@@ -205,6 +225,19 @@ def select_common_fields_in_targeting(targeting, input_dictionary):
 
 def get_api_field_name(field_name):
     return constants.INPUT_TO_API_FIELD_NAME[field_name]
+
+
+def process_audience_from_response(literal_response):
+    audience = json.loads(literal_response)["data"]["users"]
+    return int(audience)
+
+
+def post_process_collection(collection_dataframe):
+    # For now just capture audience
+    print_info("Computing Audience column")
+    collection_dataframe["audience"] = collection_dataframe["response"].apply(
+        lambda x: process_audience_from_response(x))
+    return collection_dataframe
 
 
 def select_advance_targeting_type_array_ids(field_name, input_value, targeting):
@@ -235,25 +268,25 @@ def select_advance_targeting_type_array_integer(field_name, input_value, targeti
             raise JsonFormatException("Something wrong with: " + str(input_value))
 
 
-def select_advance_targeting_fields(targeting, input_dictionary):
+def select_advance_targeting_fields(targeting, input_combination_dictionary):
     # Selecting Advance Targeting
     targeting["flexible_spec"] = []
     targeting["exclusions"] = {}
 
     for advance_field in constants.ADVANCE_TARGETING_FIELDS_TYPE_ARRAY_IDS:
-        if input_dictionary.has_key(advance_field):
-            select_advance_targeting_type_array_ids(advance_field, input_dictionary[advance_field], targeting)
+        if input_combination_dictionary.has_key(advance_field):
+            select_advance_targeting_type_array_ids(advance_field, input_combination_dictionary[advance_field], targeting)
     for advance_field in constants.ADVANCE_TARGETING_FIELDS_TYPE_ARRAY_INTEGER:
-        if input_dictionary.has_key(advance_field):
-            select_advance_targeting_type_array_integer(advance_field, input_dictionary[advance_field], targeting)
+        if input_combination_dictionary.has_key(advance_field):
+            select_advance_targeting_type_array_integer(advance_field, input_combination_dictionary[advance_field], targeting)
     return targeting
 
 
 def build_targeting(input_combination):
     targeting = {}
-    input_dictionary = dict(input_combination)
-    select_common_fields_in_targeting(targeting, input_dictionary)
-    select_advance_targeting_fields(targeting, input_dictionary)
+    input_combination_dictionary = dict(input_combination)
+    select_common_fields_in_targeting(targeting, input_combination_dictionary)
+    select_advance_targeting_fields(targeting, input_combination_dictionary)
     return targeting
 
 

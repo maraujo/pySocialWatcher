@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/maraujo/pySocialWatcher.svg?branch=dev)](https://travis-ci.org/maraujo/pySocialWatcher)
 [![codecov](https://codecov.io/gh/maraujo/pySocialWatcher/branch/dev/graph/badge.svg)](https://codecov.io/gh/maraujo/pySocialWatcher)
 
-**Package Name:** pySocialWatcher
+**Package Name:** pysocialwatcher
 
 **Facebook Ads API version supported:** 2.8
 
@@ -30,6 +30,9 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
     >>> watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json")
 
+### How it works:
+
+
 ### Features
 1. Static input json format to make you experiments easily reproducible.
 2. Support multiple Facebook tokens.
@@ -46,6 +49,7 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     "age_min"
     "age_max"
     ```
+5. Continue a data collection from anytime
 
 #### Input Json Format Example
     {

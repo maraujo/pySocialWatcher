@@ -12,17 +12,6 @@ SRC_FOLDER_PATH = ROOT_FOLDER_PATH + "/pysocialwatcher/"
 def get_abs_file_path_in_src_folder(file_name):
     return SRC_FOLDER_PATH + file_name
 
-def unstrict_literal_eval(string):
-    try:
-        value =  ast.literal_eval(string)
-        return value
-    except ValueError:
-        return string
-
-def load_test_dataframe(file_path):
-    dataframe = pd.DataFrame.from_csv(file_path)
-    return dataframe.applymap(unstrict_literal_eval)
-
 def assert_data_frame_almost_equal(left, right):
     assert_frame_equal(left, right,
                            check_dtype=False,
