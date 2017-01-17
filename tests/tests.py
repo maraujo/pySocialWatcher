@@ -23,6 +23,25 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("credentials.csv"))
         # self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
 
+    # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
+    def test_get_behavior_dataframe(self):
+        behavior_dataframe = self.crawler.get_behavior_dataframe()
+        behavior_ids = behavior_dataframe["behavior_id"].values
+        self.assertTrue("6042330550783" in behavior_ids)
+        self.assertTrue("6025000826583" in behavior_ids)
+        self.assertTrue("6013017308783" in behavior_ids)
+
+    # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
+    def test_get_interest_given_name(self):
+        interests_dataframe = self.crawler.get_interests_given_query("obesity")
+        interests_names = interests_dataframe["name"].values
+        self.assertTrue("Obesity awareness" in interests_names)
+        self.assertTrue("Childhood obesity awareness" in interests_names)
+
+    # @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
+    def test_quick_example_facebook_real_collection_dont_fail(self):
+        self.crawler.run_data_collection(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
+
     def test_load_tokens_file(self):
         constants.TOKENS = []
         self.assertListEqual(constants.TOKENS, [])
@@ -43,37 +62,32 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
             send_request("http://wasdasww.gaasdoogle.casdasdadxzom", params={})
         self.assertTrue(context.exception, RequestException)
 
-    # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
-    def test_get_behavior_dataframe(self):
-        behavior_dataframe = self.crawler.get_behavior_dataframe()
-        behavior_ids = behavior_dataframe["behavior_id"].values
-        self.assertTrue("6042330550783" in behavior_ids)
-        self.assertTrue("6025000826583" in behavior_ids)
-        self.assertTrue("6013017308783" in behavior_ids)
-
-    # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
-    def test_get_interest_given_name(self):
-        interests_dataframe = self.crawler.get_interests_given_query("obesity")
-        interests_names = interests_dataframe["name"].values
-        self.assertTrue("Obesity awareness" in interests_names)
-        self.assertTrue("Childhood obesity awareness" in interests_names)
-
     def test_read_json_file(self):
         data_json = self.crawler.read_json_file(get_abs_file_path_in_src_folder("input_examples/example.json"))
         self.assertTrue(type(data_json), type({}))
 
     def test_build_collection_dataframe(self):
+        #Testing Quick Example
         json_data = self.crawler.read_json_file(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
         dataframe = self.crawler.build_collection_dataframe(json_data)
         test_dataframe = load_dataframe_from_file("resources/quick_example_dataframe_skeleton.csv")
         assert_data_frame_almost_equal(dataframe,test_dataframe)
+        # Testing Test Example
+        json_data = self.crawler.read_json_file(get_abs_file_path_in_src_folder("input_examples/test_example.json"))
+        dataframe = self.crawler.build_collection_dataframe(json_data)
+        test_dataframe = load_dataframe_from_file("resources/test_example_dataframe_skeleton.csv")
+        assert_data_frame_almost_equal(dataframe, test_dataframe)
 
+
+        # TODO: Tests
         # test_check_tokens_account_valid_with_valid()
         # test_check_tokens_account_valid_with_invalid()
         # test_trigger_request_process_and_return_response()
         # test_post_process_collection()
         # select_advance_targeting_type_array_ids with more complex
         # test_get_geo_locations_given_query_and_location_type(query, location_types):
+    def tearDown(self):
+        constants.TOKENS = []
 
 
 

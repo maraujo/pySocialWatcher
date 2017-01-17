@@ -1,7 +1,7 @@
 {   "name": "Luxury in Bahrein and Argelia",
     "geo_locations": [
-      { "name": "regions", "value": [{"key":"3843"}]},
-      { "name": "regions", "value": [{"key":"3843"}], "location_types": ["recent"] }
+      { "name": "regions", "values": [{"key":"3843"}]},
+      { "name": "regions", "values": [{"key":"3843"}], "location_types": ["recent"] }
     ],
     "genders": [0],
     "ages_ranges": [
@@ -13,7 +13,7 @@
       }],
     "languages":[{
         "name" : "Arabic",
-        "or" : [28]
+        "values" : [28]
         }],
     "behavior": [
         {

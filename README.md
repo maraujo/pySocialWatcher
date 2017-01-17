@@ -15,6 +15,9 @@
 This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
 Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
 
+### Limitations:
+TODO
+
 ### Install
     git clone https://github.com/maraujo/pySocialWatcher.git
     cd pySocialWatcher
@@ -31,7 +34,7 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     >>> watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json")
 
 ### How it works:
-
+TODO
 
 ### Features
 1. Static input json format to make you experiments easily reproducible.

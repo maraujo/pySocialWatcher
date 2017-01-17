@@ -54,6 +54,7 @@ def send_request(url, params):
             if error_json["error"].has_key("error_user_title") and error_json["error"].has_key("error_user_msg"):
                 print_warning("Facebook: " + str(error_json["error"]["error_user_title"]) + "\n" + str(error_json["error"]["error_user_msg"]))
             print_warning("Facebook Trace Id: " + str(error_json["error"]["fbtrace_id"]))
+            print_warning("Request Params : " + str(params))
             raise FatalException(str(error_json["error"]["message"]))
         else:
             raise FatalException(str(response.text))
@@ -138,6 +139,10 @@ def save_response_in_dataframe(shared_queue_list, df):
         df.loc[result_index, "response"] = result_response
 
 
+def save_skeleton_dataframe(dataframe):
+    print_info("Saving Skeleton file: " + constants.DATAFRAME_SKELETON_FILE_NAME)
+    dataframe.to_csv(constants.DATAFRAME_SKELETON_FILE_NAME)
+
 def save_temporary_dataframe(dataframe):
     print_info("Saving temporary file: " + constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
     dataframe.to_csv(constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
@@ -146,6 +151,12 @@ def save_temporary_dataframe(dataframe):
 def save_after_collecting_dataframe(dataframe):
     print_info("Saving after collecting file: " + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME)
     dataframe.to_csv(constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME)
+
+def save_after_collecting_dataframe_without_full_response(dataframe):
+    dataframe = dataframe.drop('response', 1)
+    print_dataframe(dataframe)
+    print_info("Saving after collecting file: " + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE)
+    dataframe.to_csv(constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE)
 
 
 def print_warning(message):
@@ -202,7 +213,7 @@ def select_common_fields_in_targeting(targeting, input_combination_dictionary):
         location_type = constants.DEFAULT_GEOLOCATION_LOCATION_TYPE_FIELD
 
     targeting[constants.API_GEOLOCATION_FIELD] = {
-        geo_location["name"]: geo_location["value"],
+        geo_location["name"]: geo_location["values"],
         constants.INPUT_GEOLOCATION_LOCATION_TYPE_FIELD: location_type
     }
     # Selecting Age
@@ -218,7 +229,7 @@ def select_common_fields_in_targeting(targeting, input_combination_dictionary):
     if input_combination_dictionary.has_key(constants.INPUT_LANGUAGE_FIELD):
         languages = input_combination_dictionary[constants.INPUT_LANGUAGE_FIELD]
         if languages:
-            targeting[constants.API_LANGUAGES_FIELD] = languages["or"]
+            targeting[constants.API_LANGUAGES_FIELD] = languages["values"]
     else:
         print_warning("No field: " + constants.INPUT_LANGUAGE_FIELD)
 
@@ -245,16 +256,16 @@ def select_advance_targeting_type_array_ids(field_name, input_value, targeting):
     if input_value:
         if input_value.has_key("or"):
             or_query = []
-            for or_value in input_value["or"]:
-                or_query.append({"id" : or_value})
+            for id_or in input_value["or"]:
+                or_query.append({"id" : id_or})
             targeting["flexible_spec"].append({api_field_name: or_query})
         elif input_value.has_key("and"):
-            for and_item in input_value["and"]:
-                targeting["flexible_spec"].append({"id": and_item})
+            for id_and in input_value["and"]:
+                targeting["flexible_spec"].append({field_name: {"id" : id_and}})
         elif input_value.has_key("not"):
             targeting["exclusions"][api_field_name] = []
-            for not_item in input_value["not"]:
-                targeting["exclusions"][api_field_name].append(not_item)
+            for id_not in input_value["not"]:
+                targeting["exclusions"][api_field_name].append({"id" : id_not})
         else:
             raise JsonFormatException("Something wrong with: " + str(input_value))
 

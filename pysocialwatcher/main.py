@@ -116,6 +116,7 @@ class PySocialWatcher:
         dataframe = collection_dataframe.append(collection_queries)
         if constants.SAVE_EMPTY:
             dataframe.to_csv(constants.DATAFRAME_SKELETON_FILE_NAME)
+        save_skeleton_dataframe(dataframe)
         return dataframe
 
     @staticmethod
@@ -160,7 +161,6 @@ class PySocialWatcher:
         input_data_json = PySocialWatcher.read_json_file(json_input_file_path)
         PySocialWatcher.check_input_integrity(input_data_json)
         collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json)
-        save_temporary_dataframe(collection_dataframe)
         collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
         return collection_dataframe
 

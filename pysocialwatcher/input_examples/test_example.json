@@ -1,7 +1,7 @@
 {   "name": "Luxury in Bahrein and Argelia",
     "geo_locations": [
-      { "name": "countries", "value": ["DZ"], "location_type":["home"] },
-      { "name": "countries", "value": ["BH"], "location_type":["recent"] }
+      { "name": "countries", "values": ["DZ"], "location_type":["home"] },
+      { "name": "countries", "values": ["BH"], "location_type":["recent"] }
     ],
     "genders": [0],
     "ages_ranges": [
@@ -11,35 +11,31 @@
     "scholarities":[{
         "name" : "Graduated",
         "or" : [3,7,8,9,11]
-      },
-      {
-        "name" : "High School or Professional Degree",
-        "or" : [2,4,5,6,10]
       }
     ],
     "languages":[{
         "name" : "Arabic",
-        "or" : [28]
+        "values" : [28]
         },
         {
           "name" : "English",
-          "or" : [1001]
+          "values" : [1001]
         }],
     "behavior": [
         {
           "or": [6015559470583],
           "name": "Expats"
-        },
-        {
-          "not": [6015559470583],
-          "name": "Locals"
         }
     ],
     "interests": [{
-            "or": [6004037400009,6003372667195,6003089951815,6003398056603],
+            "not": [6004037400009,6003372667195,6003089951815,6003398056603],
             "name": "fast food"
         },{
-            "or": [6003190733601,6003327856180,6002951487650,6003382102565,6003257688701],
+            "and": [6003190733601,6003327856180,6002951487650,6003382102565,6003257688701],
+            "name" : "obesity"
+        },
+        {
+            "not": [6003190733601,6003327856180,6002951487650,6003382102565,6003257688701],
             "name" : "obesity"
         }
     ]
