@@ -3,9 +3,12 @@
  
 [![Build Status](https://travis-ci.org/maraujo/pySocialWatcher.svg?branch=dev)](https://travis-ci.org/maraujo/pySocialWatcher)
 [![codecov](https://codecov.io/gh/maraujo/pySocialWatcher/branch/dev/graph/badge.svg)](https://codecov.io/gh/maraujo/pySocialWatcher)
+
 **Package Name:** pySocialWatcher
 
 **Facebook Ads API version supported:** 2.8
+
+**License:** MIT
 
 
 ### What is this for
