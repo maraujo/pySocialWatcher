@@ -9,7 +9,7 @@
 
 
 ### What is this for
-This application tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
+This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
 Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
 
 ### Install
