@@ -16,31 +16,58 @@ import codecov
 import pytest_cov
 import requests
 
+VALID_TOKENS_PATH = get_abs_file_path_in_src_folder("credentials.csv")
+INVALID_TOKENS_PATH = get_abs_file_path_in_src_folder("facebook_credentials_example.csv")
+USING_VALID_TOKENS = True
 
 class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
-        # self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("credentials.csv"))
-        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
+        try:
+            self.crawler.load_credentials_file(VALID_TOKENS_PATH)
+        except:
+            USING_VALID_TOKENS = False
+            self.crawler.load_credentials_file(INVALID_TOKENS_PATH)
 
-    @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
+    # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
     def test_get_behavior_dataframe(self):
+        if not USING_VALID_TOKENS:
+            return
         behavior_dataframe = self.crawler.get_behavior_dataframe()
         behavior_ids = behavior_dataframe["behavior_id"].values
         self.assertTrue("6042330550783" in behavior_ids)
         self.assertTrue("6025000826583" in behavior_ids)
         self.assertTrue("6013017308783" in behavior_ids)
 
-    @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
+    # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
     def test_get_interest_given_name(self):
+        if not USING_VALID_TOKENS:
+            return
         interests_dataframe = self.crawler.get_interests_given_query("obesity")
         interests_names = interests_dataframe["name"].values
         self.assertTrue("Obesity awareness" in interests_names)
         self.assertTrue("Childhood obesity awareness" in interests_names)
 
-    @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
+    # @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
     def test_quick_example_facebook_real_collection_dont_fail(self):
+        if not USING_VALID_TOKENS:
+            return
         self.crawler.run_data_collection(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
+
+    # @unittest.skip("Test Check Tokens Account Valid With Valid Skipped due need valid tokens")
+    def test_check_tokens_account_valid_with_valid(self):
+        if not USING_VALID_TOKENS:
+            return
+        constants.TOKENS = []
+        self.crawler.load_credentials_file(VALID_TOKENS_PATH)
+        self.crawler.check_tokens_account_valid()
+
+    def test_check_tokens_account_valid_with_invalid(self):
+        constants.TOKENS = []
+        self.crawler.load_credentials_file(INVALID_TOKENS_PATH)
+        with self.assertRaises(Exception) as context:
+            self.crawler.check_tokens_account_valid()
+        self.assertTrue(context.exception, FatalException)
 
     def test_load_tokens_file(self):
         constants.TOKENS = []
@@ -80,8 +107,6 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
 
 
         # TODO: Tests
-        # test_check_tokens_account_valid_with_valid()
-        # test_check_tokens_account_valid_with_invalid()
         # test_trigger_request_process_and_return_response()
         # test_post_process_collection()
         # select_advance_targeting_type_array_ids with more complex

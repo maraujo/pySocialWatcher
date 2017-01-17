@@ -43,14 +43,15 @@ TODO
 3. Comples logic queries in the Facebook Marketing API with 'or', 'and', 'not', check the input_examples.
 4. Current supported fields:
     ```
-    "interests"
-    "behaviors"
-    "education_statuses"
-    "family_statuses"
-    "locales"
-    "genders"
-    "age_min"
-    "age_max"
+    "interests",
+    "behaviors",
+    "education_statuses",
+    "family_statuses",
+    "locales",
+    "genders",
+    "age_min",
+    "age_max",
+    "geo_locations"
     ```
 5. Continue a data collection from anytime
 
