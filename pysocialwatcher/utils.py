@@ -313,6 +313,13 @@ def print_collecting_progress(uncomplete_df, df):
     uncomplete_df_size = len(uncomplete_df)
     print_info("Collecting... Completed: {:.2f}% , {:d}/{:d}".format((float(full_size - uncomplete_df_size) / full_size * 100),
                                                                      full_size - uncomplete_df_size, full_size))
-
+def send_dumb_query(token, account):
+    try:
+        call_request_fb(constants.DEFAULT_DUMB_TARGETING, token, account)
+    except Exception as error:
+        print_warning("Token or Account Number Error:")
+        print_warning("Token:" + token)
+        print_warning("Account:" + account)
+        raise  error
 
 

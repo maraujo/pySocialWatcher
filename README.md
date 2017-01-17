@@ -111,6 +111,20 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     |   3 |   91484312 | 6003050295572 | Users who uploaded >50 photos on Facebook in last month.                                                          | Photo uploaders
     ...
 
+#### Find Geo Location Key Given Query and Location Type
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcherAPI.print_geo_locations_given_query_and_location_type("new", ["city"])
+    +----+---------+-------------------------+-----------------+-------------------+--------+
+    |    |     key | name                    |   supports_city |   supports_region | type   |
+    |----+---------+-------------------------+-----------------+-------------------+--------|
+    |  0 | 2490299 | New York                |               1 |                 1 | city   |
+    |  1 | 2490287 | New Rochelle            |               1 |                 1 | city   |
+    |  2 | 2528778 | New Braunfels           |               1 |                 1 | city   |
+    |  3 | 2511352 | New Castle              |               1 |                 1 | city   |
+    ....
+
 #### Advaced Configurations
 #####Change Sleep time between requests to 10s:
 

@@ -57,6 +57,32 @@ class PySocialWatcher:
         return interests
 
     @staticmethod
+    def get_geo_locations_given_query_and_location_type(query, location_types):
+        request_payload = {
+            'type': 'adgeolocation',
+            'location_types': location_types,
+            'q': query,
+            'access_token': get_token_and_account_number_or_wait()[0]
+        }
+        response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
+        json_response = load_json_data_from_response(response)
+        interests = pd.DataFrame()
+        for entry in json_response["data"]:
+            interests = interests.append({
+                "key": entry["key"],
+                "name": entry["name"],
+                "type": entry["type"],
+                "supports_city": entry["supports_city"],
+                "supports_region": entry["supports_region"]
+            }, ignore_index=True)
+        return interests
+
+    @staticmethod
+    def print_geo_locations_given_query_and_location_type(query, location_types):
+        geo_locations = PySocialWatcher.get_geo_locations_given_query_and_location_type(query, location_types)
+        print_dataframe(geo_locations)
+
+    @staticmethod
     def print_interests_given_query(interest_query):
         interests = PySocialWatcher.get_interests_given_query(interest_query)
         print_dataframe(interests)
@@ -116,6 +142,13 @@ class PySocialWatcher:
         post_process_collection(collection_dataframe)
         save_after_collecting_dataframe(collection_dataframe)
         return collection_dataframe
+
+    @staticmethod
+    def check_tokens_account_valid():
+        print_info("Testing tokens and account number")
+        for token, account in constants.TOKENS:
+            send_dumb_query(token, account)
+        print_info("All tokens and respective account number are valid.")
 
     @staticmethod
     def check_input_integrity(input_data_json):

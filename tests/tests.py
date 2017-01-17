@@ -20,8 +20,8 @@ import requests
 class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
-        # self.crawler.load_token_file(get_abs_file_path_in_src_folder("tokens.csv"))
-        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
+        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("credentials.csv"))
+        # self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
 
     def test_load_tokens_file(self):
         constants.TOKENS = []
@@ -43,7 +43,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
             send_request("http://wasdasww.gaasdoogle.casdasdadxzom", params={})
         self.assertTrue(context.exception, RequestException)
 
-    @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
+    # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
     def test_get_behavior_dataframe(self):
         behavior_dataframe = self.crawler.get_behavior_dataframe()
         behavior_ids = behavior_dataframe["behavior_id"].values
@@ -51,7 +51,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         self.assertTrue("6025000826583" in behavior_ids)
         self.assertTrue("6013017308783" in behavior_ids)
 
-    @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
+    # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
     def test_get_interest_given_name(self):
         interests_dataframe = self.crawler.get_interests_given_query("obesity")
         interests_names = interests_dataframe["name"].values
@@ -67,6 +67,15 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         dataframe = self.crawler.build_collection_dataframe(json_data)
         test_dataframe = load_dataframe_from_file("resources/quick_example_dataframe_skeleton.csv")
         assert_data_frame_almost_equal(dataframe,test_dataframe)
+
+        # test_check_tokens_account_valid_with_valid()
+        # test_check_tokens_account_valid_with_invalid()
+        # test_trigger_request_process_and_return_response()
+        # test_post_process_collection()
+        # select_advance_targeting_type_array_ids with more complex
+        # test_get_geo_locations_given_query_and_location_type(query, location_types):
+
+
 
 if __name__ == '__main__':
     unittest.main()
