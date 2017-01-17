@@ -13,8 +13,10 @@ This package tries to get the full potencial of the Facebook Marketing API for S
 Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
 
 ### Install
+    git clone https://github.com/maraujo/pySocialWatcher.git
+    cd pySocialWatcher
     pip install -r requirements.txt
-    python setup install
+    python setup.py install
     
 ### Quick Start
 You should have a .csv file with your Facebook tokens and accountIDs.
@@ -115,4 +117,5 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
 
 
 ### Change Log
+* 0.1a1 - Add MIT License and large support in facebook API
 * 0.1a0 - First Alpha Release
