@@ -128,7 +128,6 @@ class PySocialWatcher:
         PySocialWatcher.check_input_integrity(input_data_json)
         collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json)
         save_temporary_dataframe(collection_dataframe)
-        sys.exit(0)
         collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
         return collection_dataframe
 
@@ -136,7 +135,7 @@ class PySocialWatcher:
     def load_data_and_continue_collection(input_file_path):
         collection_dataframe = load_dataframe_from_file(input_file_path)
         collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
-        return  collection_dataframe
+        return collection_dataframe
 
     @staticmethod
     def config(sleep_time = 8, save_every = 300, save_after_empty_dataframe = False):
