@@ -20,10 +20,10 @@ import requests
 class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
-        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("credentials.csv"))
-        # self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
+        # self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("credentials.csv"))
+        self.crawler.load_credentials_file(get_abs_file_path_in_src_folder("facebook_credentials_example.csv"))
 
-    # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
+    @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
     def test_get_behavior_dataframe(self):
         behavior_dataframe = self.crawler.get_behavior_dataframe()
         behavior_ids = behavior_dataframe["behavior_id"].values
@@ -31,14 +31,14 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         self.assertTrue("6025000826583" in behavior_ids)
         self.assertTrue("6013017308783" in behavior_ids)
 
-    # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
+    @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
     def test_get_interest_given_name(self):
         interests_dataframe = self.crawler.get_interests_given_query("obesity")
         interests_names = interests_dataframe["name"].values
         self.assertTrue("Obesity awareness" in interests_names)
         self.assertTrue("Childhood obesity awareness" in interests_names)
 
-    # @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
+    @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
     def test_quick_example_facebook_real_collection_dont_fail(self):
         self.crawler.run_data_collection(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
 
