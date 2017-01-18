@@ -18,20 +18,21 @@ import requests
 
 VALID_TOKENS_PATH = get_abs_file_path_in_src_folder("credentials.csv")
 INVALID_TOKENS_PATH = get_abs_file_path_in_src_folder("facebook_credentials_example.csv")
-USING_VALID_TOKENS = True
 
 class TestFacebookMarketingCrawler(unittest.TestCase):
     def setUp(self):
         self.crawler = PySocialWatcher
         try:
+            self.using_valid_tokens = True
             self.crawler.load_credentials_file(VALID_TOKENS_PATH)
         except:
-            USING_VALID_TOKENS = False
+            print "casa"
+            self.using_valid_tokens = False
             self.crawler.load_credentials_file(INVALID_TOKENS_PATH)
 
     # @unittest.skip("Test Get Behaviors Skipped due need valid tokens")
     def test_get_behavior_dataframe(self):
-        if not USING_VALID_TOKENS:
+        if not self.using_valid_tokens:
             return
         behavior_dataframe = self.crawler.get_behavior_dataframe()
         behavior_ids = behavior_dataframe["behavior_id"].values
@@ -41,7 +42,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
 
     # @unittest.skip("Test Interest Given Name Skipped due need valid tokens")
     def test_get_interest_given_name(self):
-        if not USING_VALID_TOKENS:
+        if not self.using_valid_tokens:
             return
         interests_dataframe = self.crawler.get_interests_given_query("obesity")
         interests_names = interests_dataframe["name"].values
@@ -50,13 +51,13 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
 
     # @unittest.skip("Test Quick Example Facebook Real Collection Dont Fail Skipped due need valid tokens")
     def test_quick_example_facebook_real_collection_dont_fail(self):
-        if not USING_VALID_TOKENS:
+        if not self.using_valid_tokens:
             return
         self.crawler.run_data_collection(get_abs_file_path_in_src_folder("input_examples/quick_example.json"))
 
     # @unittest.skip("Test Check Tokens Account Valid With Valid Skipped due need valid tokens")
     def test_check_tokens_account_valid_with_valid(self):
-        if not USING_VALID_TOKENS:
+        if not self.using_valid_tokens:
             return
         constants.TOKENS = []
         self.crawler.load_credentials_file(VALID_TOKENS_PATH)

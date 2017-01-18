@@ -13,3 +13,5 @@ tests/.coverage
 tokens.csv
 credentials.csv
 build
+pysocialwatcher/dataframe_collecting*
+tests/*.csv
