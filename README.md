@@ -82,6 +82,9 @@ TODO
         }]
     }
 
+#### Output
+TODO
+
 #### Find Interest IDs given name Name
     >>> from pysocialwatcher import watcherAPI 
     >>> watcher = watcherAPI() 
