@@ -142,5 +142,5 @@ TODO
 
 
 ### Change Log
-* 0.1a1 - Add MIT License and large support in facebook API
+* 0.1a1 - Add MIT License and 'Geo Location' field support in facebook API
 * 0.1a0 - First Alpha Release

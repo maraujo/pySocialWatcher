@@ -10,8 +10,6 @@ import time
 from multiprocessing import Process, Manager
 import numpy
 import requests
-import traceback
-import sys
 import ast
 
 coloredlogs.install(level=logging.INFO)
