@@ -37,7 +37,6 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
             self.using_valid_tokens = True
             self.crawler.load_credentials_file(VALID_TOKENS_PATH)
         except:
-            print "casa"
             self.using_valid_tokens = False
             self.crawler.load_credentials_file(INVALID_TOKENS_PATH)
 
@@ -77,6 +76,8 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         self.crawler.load_data_and_continue_collection(QUICK_EXAMPLE_SKELETON)
 
     def test_check_tokens_account_valid_with_valid(self):
+        if not self.using_valid_tokens:
+            return
         constants.TOKENS = []
         self.crawler.load_credentials_file(VALID_TOKENS_PATH)
         self.crawler.check_tokens_account_valid()
