@@ -22,6 +22,7 @@ Examples of research question that it can answer:
 
 ##### Facebook Marketing API Refereces page:
 Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
+
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
 ### Limitations:
 * Current supported API fields are listed below:
