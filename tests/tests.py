@@ -18,11 +18,11 @@ import requests
 
 VALID_TOKENS_PATH = get_abs_file_path_in_src_folder("credentials.csv")
 INVALID_TOKENS_PATH = get_abs_file_path_in_src_folder("facebook_credentials_example.csv")
-QUICK_EXAMPLE_SKELETON = "resources/quick_example_dataframe_skeleton.csv"
+QUICK_EXAMPLE_SKELETON = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_skeleton.csv")
 TEST_EXAMPLE_SKELETON = ""
-QUICK_EXAMPLE_COLLECTED = "resources/quick_example_dataframe_collected.csv"
-TEST_EXAMPLE_COLLECTED = "resources/test_example_dataframe_skeleton.csv"
-QUICK_EXAMPLE_POSTPROCESSED = "resources/quick_example_dataframe_postprocessed.csv"
+QUICK_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_collected.csv")
+TEST_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/test_example_dataframe_skeleton.csv")
+QUICK_EXAMPLE_POSTPROCESSED = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_postprocessed.csv")
 # TEST_EXAMPLE_POSTPROCESSED = ""
 JSON_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/example.json")
 JSON_QUICK_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/quick_example.json")

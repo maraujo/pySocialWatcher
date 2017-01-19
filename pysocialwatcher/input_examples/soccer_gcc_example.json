@@ -1,0 +1,46 @@
+{   "name": "Soccer Interest",
+    "geo_locations": [
+      { "name": "countries", "values": ["BH"] },
+      { "name": "countries", "values": ["KW"] },
+      { "name": "countries", "values": ["OM"] },
+      { "name": "countries", "values": ["QA"] },
+      { "name": "countries", "values": ["SA"] },
+      { "name": "countries", "values": ["AE"] }
+    ],
+    "genders": [1,2],
+    "ages_ranges": [
+        {"min":18, "max":24},
+        {"min":55}
+    ],
+    "scholarities":[{
+        "name" : "Graduated",
+        "or" : [3,7,8,9,11]
+      }
+    ],
+    "languages":[{
+        "name" : "Arabic",
+        "values" : [28]
+        },
+        {
+          "name" : "English",
+          "values" : [1001]
+        }],
+    "behavior": [
+        {
+          "or": [6015559470583],
+          "name": "Expats"
+        },
+        {
+          "not": [6015559470583],
+          "name": "Not Expats"
+        }
+    ],
+    "interests": [{
+            "not": [6003442346642],
+            "name": "Not interested in Football"
+        },{
+            "or": [6003442346642],
+            "name" : "Football"
+        }
+    ]
+}
