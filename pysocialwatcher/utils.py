@@ -257,14 +257,15 @@ def select_advance_targeting_type_array_ids(field_name, input_value, targeting):
             for id_or in input_value["or"]:
                 or_query.append({"id" : id_or})
             targeting["flexible_spec"].append({api_field_name: or_query})
-        elif input_value.has_key("and"):
+        if input_value.has_key("and"):
             for id_and in input_value["and"]:
                 targeting["flexible_spec"].append({field_name: {"id" : id_and}})
-        elif input_value.has_key("not"):
+        if input_value.has_key("not"):
             targeting["exclusions"][api_field_name] = []
             for id_not in input_value["not"]:
                 targeting["exclusions"][api_field_name].append({"id" : id_not})
-        else:
+
+        if not input_value.has_key("or") and not input_value.has_key("and") and not input_value.has_key("not"):
             raise JsonFormatException("Something wrong with: " + str(input_value))
 
 

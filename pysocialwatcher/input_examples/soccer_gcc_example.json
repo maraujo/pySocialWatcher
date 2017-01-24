@@ -21,10 +21,8 @@
         "name" : "Arabic",
         "values" : [28]
         },
-        {
-          "name" : "English",
-          "values" : [1001]
-        }],
+        null
+    ],
     "behavior": [
         {
           "or": [6015559470583],
@@ -37,7 +35,8 @@
     ],
     "interests": [{
             "not": [6003442346642],
-            "name": "Not interested in Football"
+            "and": [6004115167424, 6003277229371],
+            "name": "Not interested in Football, but interest in physical activity"
         },{
             "or": [6003442346642],
             "name" : "Football"

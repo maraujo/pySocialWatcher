@@ -60,35 +60,87 @@ Check the slides: https://goo.gl/WzE9ic
 1. Static input json format to make you experiments easily reproducible.
 2. Support multiple Facebook tokens.
 3. Multiple tokens are processed in parallel to speedup data collection.
-3. Complex logic queries in the Facebook Marketing API with 'or', 'and', 'not', check the input_examples.
+3. Complex logic queries in the Facebook Marketing API with 'or', 'and', 'not', for example:.
+```
+      "interests": [{
+            "not": [6003442346642],
+            "and": [6004115167424, 6003277229371],
+            "name": "Not interested in Football, but interest in some physical activity"
+        }
+```
 4. Automatically save the state every constants.SAVE_EVERY requests. If any problem happens you can load the incomplete file and continue the data collection (```load_data_and_continue_collection```)
 
 #### Input Json Format Example
-    {
-        "name": "Luxury in Bahrein and Argelia",
-        "location": ["DZ","BH"],
-        "genders": [0],
-        "ages_ranges": [
-            {"min":18, "max":24}
-        ],
-        "scholarities":[{
-            "name" : "Graduated",
-            "or" : [3,7,8,9,11]
-        }],
-        "languages":[{
-            "name" : "Arabic",
-            "or" : [28]
-         }],
-        "behavior": [
-            {
-            "or": [6015559470583],
-            "name": "Expats"
-         }],
-        "interests": [{
-            "or": [6007828099136,6003392552125,6002991798459,6003132627317,6003488503154,6004048615096,6003840055852,6003103779434,6003401661947,6003167425934,6003263791114,6003346592981,6003390752144,6003325662688,6004037400009,6003372667195,6003089951815,6003398056603,6002971085794,6003289911338,6003188427578,6002944044446,6003509853804],
-            "name": "luxury"
-        }]
-    }
+
+The following input is an example of input format of the package. In this example it will perform several requests in the Facebook Marketing API in order to collect the audience realted to Soccer Interest in GCC countries.
+
+    {   "name": "Soccer Interest",
+         "geo_locations": [
+              { "name": "countries", "values": ["BH"] },
+              { "name": "countries", "values": ["KW"] },
+              { "name": "countries", "values": ["OM"] },
+              { "name": "countries", "values": ["QA"] },
+              { "name": "countries", "values": ["SA"] },
+              { "name": "countries", "values": ["AE"] }
+    ],
+    "genders": [1,2],
+    "ages_ranges": [
+        {"min":18, "max":24},
+        {"min":55}
+    ],
+    "scholarities":[{
+        "name" : "Graduated",
+        "or" : [3,7,8,9,11]
+      }
+    ],
+    "languages":[{
+        "name" : "Arabic",
+        "values" : [28]
+        },
+        null
+    ],
+    "behavior": [
+        {
+          "or": [6015559470583],
+          "name": "Expats"
+        },
+        {
+          "not": [6015559470583],
+          "name": "Not Expats"
+        }
+    ],
+    "interests": [{
+            "not": [6003442346642],
+            "and": [6004115167424, 6003277229371],
+            "name": "Not interested in Football, but interest in physical activity"
+        },{
+            "or": [6003442346642],
+            "name" : "Football"
+        }
+    ]
+}
+In total it will perform 192 requests which are created in the following way:
+```
+For each GCC country in the geo_locations field:
+    For each gender in [1,2]:
+        For each age range in [18-24,55+]:
+            For each scholarity group:
+                For each language group:
+                    For each behavior group:
+                        For each interest group:
+                            doFacebookAPIRequest()
+            
+```
+So it will collect the audience for all of the combinations specified in the input file. If you don't want to specify a specific field you can ommit in the input or put a null value in the list like:
+```
+"languages":[{
+    "name" : "Arabic",
+    "values" : [28]
+    },
+    null
+],
+
+```
 
 #### Find Interest IDs given name Name
     >>> from pysocialwatcher import watcherAPI 
@@ -150,5 +202,6 @@ Check the slides: https://goo.gl/WzE9ic
 
 
 ### Change Log
+* 0.1a2 - Fix bug when have multiple operators like (and, not) in the same query
 * 0.1a1 - Add MIT License and 'Geo Location' field support in facebook API
 * 0.1a0 - First Alpha Release
