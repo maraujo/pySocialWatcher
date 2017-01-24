@@ -118,7 +118,7 @@ The following input is an example of input format of the package. In this exampl
             "name" : "Football"
         }
     ]
-}
+    }
 In total it will perform 192 requests which are created in the following way:
 ```
 For each GCC country in the geo_locations field:
