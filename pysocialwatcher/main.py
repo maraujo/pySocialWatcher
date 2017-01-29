@@ -3,8 +3,9 @@ import sys
 
 
 from utils import *
-class PySocialWatcher:
 
+
+class PySocialWatcher:
     @staticmethod
     def load_credentials_file(token_file_path):
         with open(token_file_path, "r") as token_file:
