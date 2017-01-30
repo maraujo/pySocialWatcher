@@ -49,12 +49,11 @@ def handle_send_request_error(response, url, params, tryNumber):
     try:
         error_json = json.loads(response.text)
         if error_json["error"]["code"] == constants.API_UNKOWN_ERROR_CODE:
-            # API Error
+            print_error_warning(error_json, params)
             time.sleep(constants.INITIAL_TRY_SLEEP_TIME * tryNumber)
             return send_request(url, params, tryNumber)
-
-        print_error_warning(error_json, params)
-        raise FatalException(str(error_json["error"]["message"]))
+        else:
+            raise FatalException(str(error_json["error"]["message"]))
     except:
         raise FatalException(str(response.text))
 
@@ -70,7 +69,7 @@ def send_request(url, params, tryNumber = 0):
     if response.status_code == 200:
         return response
     else:
-        handle_send_request_error(response, url, params, tryNumber)
+        return handle_send_request_error(response, url, params, tryNumber)
 
 
 def call_request_fb(target_request, token, account):
