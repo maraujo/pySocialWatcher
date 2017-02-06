@@ -45,6 +45,15 @@ def print_error_warning(error_json, params):
     print_warning("Facebook Trace Id: " + str(error_json["error"]["fbtrace_id"]))
     print_warning("Request Params : " + str(params))
 
+def get_dataframe_from_json_response_query_data(json_response):
+    dataframe = pd.DataFrame()
+    for entry in json_response["data"]:
+        entry_details = {}
+        for field in constants.DETAILS_FIELD_FROM_FACEBOOK_TARGETING_SEARCH:
+            entry_details[field] = entry[field] if field in entry else None
+        dataframe = dataframe.append(entry_details, ignore_index=True)
+    return dataframe
+
 def handle_send_request_error(response, url, params, tryNumber):
     try:
         error_json = json.loads(response.text)

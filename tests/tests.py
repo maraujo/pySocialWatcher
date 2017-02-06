@@ -39,6 +39,14 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         except:
             self.using_valid_tokens = False
             self.crawler.load_credentials_file(INVALID_TOKENS_PATH)
+    def test_get_search_targeting_from_query_dataframe(self):
+        if not self.using_valid_tokens:
+            return
+        search_dataframe = self.crawler.get_search_targeting_from_query_dataframe("Parents")
+        search_ids = search_dataframe["id"].values
+        self.assertTrue("6002714398372" in search_ids)
+        self.assertTrue("6023005718983" in search_ids)
+        self.assertTrue("6023005681983" in search_ids)
 
     def test_get_behavior_dataframe(self):
         if not self.using_valid_tokens:
