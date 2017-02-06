@@ -52,7 +52,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         if not self.using_valid_tokens:
             return
         behavior_dataframe = self.crawler.get_behavior_dataframe()
-        behavior_ids = behavior_dataframe["behavior_id"].values
+        behavior_ids = behavior_dataframe["id"].values
         self.assertTrue("6042330550783" in behavior_ids)
         self.assertTrue("6025000826583" in behavior_ids)
         self.assertTrue("6013017308783" in behavior_ids)

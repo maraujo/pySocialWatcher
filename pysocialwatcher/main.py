@@ -39,16 +39,8 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        behaviors = pd.DataFrame()
-        for entry in json_response["data"]:
-            behaviors = behaviors.append({
-                "behavior_id": str(entry["id"]),
-                "name": entry["name"],
-                "description": entry["description"],
-                "audience_size": entry["audience_size"],
-                "path": entry["path"]
-            }, ignore_index=True)
-        return behaviors
+        behaviors_dataframe = get_dataframe_from_json_response_query_data(json_response)
+        return behaviors_dataframe
 
     @staticmethod
     def get_interests_given_query(interest_query):
@@ -59,15 +51,8 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        interests = pd.DataFrame()
-        for entry in json_response["data"]:
-            interests = interests.append({
-                "interest_id": str(entry["id"]),
-                "name": entry["name"],
-                "audience_size": entry["audience_size"],
-                "path": entry["path"]
-            }, ignore_index=True)
-        return interests
+        interests_dataframe = get_dataframe_from_json_response_query_data(json_response)
+        return interests_dataframe
 
     @staticmethod
     def get_geo_locations_given_query_and_location_type(query, location_types):
@@ -79,16 +64,8 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        interests = pd.DataFrame()
-        for entry in json_response["data"]:
-            interests = interests.append({
-                "key": entry["key"],
-                "name": entry["name"],
-                "type": entry["type"],
-                "supports_city": entry["supports_city"],
-                "supports_region": entry["supports_region"]
-            }, ignore_index=True)
-        return interests
+        locations_dataframe = get_dataframe_from_json_response_query_data(json_response)
+        return locations_dataframe
 
     @staticmethod
     def print_search_targeting_from_query_dataframe(query):
