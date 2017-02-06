@@ -216,6 +216,7 @@ So it will collect the audience for all of the combinations specified in the inp
 
 
 ### Change Log
+* 0.1a4 - Search any query with get_search_targeting_from_query_dataframe()
 * 0.1a3 - Resilient error handling when error code = 2 (try again more constants.MAX_NUMBER_TRY times)
 * 0.1a2 - Fix bug when have multiple operators like (and, not) in the same query
 * 0.1a1 - Add MIT License and 'Geo Location' field support in facebook API
