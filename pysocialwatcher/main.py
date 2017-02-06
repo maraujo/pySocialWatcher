@@ -3,8 +3,9 @@ import sys
 
 
 from utils import *
-class PySocialWatcher:
 
+
+class PySocialWatcher:
     @staticmethod
     def load_credentials_file(token_file_path):
         with open(token_file_path, "r") as token_file:
@@ -16,6 +17,18 @@ class PySocialWatcher:
     @staticmethod
     def add_token_and_account_number(token,account_number):
         constants.TOKENS.append((token,account_number))
+
+    @staticmethod
+    def get_search_targeting_from_query_dataframe(query):
+        token, account_id = get_token_and_account_number_or_wait()
+        request_payload = {
+            'q': query,
+            'access_token': token
+        }
+        response = send_request(constants.TARGETING_SEARCH_URL.format(account_id), request_payload)
+        json_response = load_json_data_from_response(response)
+        dataframe_response = get_dataframe_from_json_response_query_data(json_response)
+        return dataframe_response
 
     @staticmethod
     def get_behavior_dataframe():
@@ -32,7 +45,7 @@ class PySocialWatcher:
                 "behavior_id": str(entry["id"]),
                 "name": entry["name"],
                 "description": entry["description"],
-                "audience": entry["audience_size"],
+                "audience_size": entry["audience_size"],
                 "path": entry["path"]
             }, ignore_index=True)
         return behaviors
@@ -51,7 +64,7 @@ class PySocialWatcher:
             interests = interests.append({
                 "interest_id": str(entry["id"]),
                 "name": entry["name"],
-                "audience": entry["audience_size"],
+                "audience_size": entry["audience_size"],
                 "path": entry["path"]
             }, ignore_index=True)
         return interests
@@ -76,6 +89,11 @@ class PySocialWatcher:
                 "supports_region": entry["supports_region"]
             }, ignore_index=True)
         return interests
+
+    @staticmethod
+    def print_search_targeting_from_query_dataframe(query):
+        search_dataframe = PySocialWatcher.get_search_targeting_from_query_dataframe(query)
+        print_dataframe(search_dataframe)
 
     @staticmethod
     def print_geo_locations_given_query_and_location_type(query, location_types):

@@ -3,6 +3,9 @@ import time
 SAVE_EMPTY = False
 SLEEP_TIME = 8
 SAVE_EVERY = 300
+MAX_NUMBER_TRY = 10
+INITIAL_TRY_SLEEP_TIME = 300
+API_UNKOWN_ERROR_CODE = 2
 NUMBER_OF_REQUESTS_PER_BUCKET = 100
 UNIQUE_TIME_ID = str(time.time()).split(".")[0]
 DATAFRAME_SKELETON_FILE_NAME = "dataframe_skeleton_" + UNIQUE_TIME_ID + ".csv"
@@ -12,6 +15,7 @@ DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE = "collect_finished_c
 DEFAULT_DUMB_TARGETING = {'geo_locations': {u'regions': [{u'key': u'3843'}], 'location_types': ['home']}, 'genders': [0], }
 REACHESTIMATE_URL = "https://graph.facebook.com/v2.8/act_{}/reachestimate"
 GRAPH_SEARCH_URL = "https://graph.facebook.com/v2.8/search"
+TARGETING_SEARCH_URL = "https://graph.facebook.com/v2.8/act_{}/targetingsearch"
 TOKENS = []
 INPUT_AGE_RANGE_FIELD = "ages_ranges"
 INPUT_GEOLOCATION_FIELD = "geo_locations"
@@ -30,7 +34,7 @@ ALLFIELDS_FIELD = "all_fields"
 INPUT_NAME_FIELD = "name"
 MIN_AGE = "min"
 MAX_AGE = "max"
-
+DETAILS_FIELD_FROM_FACEBOOK_TARGETING_SEARCH = ["id", "name", "type", "description", "audience_size", "path"]
 API_INTEREST_FIELD = "interests"
 API_BEHAVIOR_FIELD = "behaviors"
 API_SCHOLARITY_FIELD = "education_statuses"

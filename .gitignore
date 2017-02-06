@@ -16,3 +16,4 @@ build
 pysocialwatcher/dataframe_collecting*
 tests/*.csv
 /pysocialwatcher/input_examples/arab_awareness.json
+.cache

@@ -141,7 +141,21 @@ So it will collect the audience for all of the combinations specified in the inp
 ],
 
 ```
-
+#### Find Targeting IDs given Query
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcher.print_search_targeting_from_query_dataframe("Parents")
+    
+    +----+-----------------+----------------------------------------+------------------+------------------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------+
+    |    |   audience_size | description                            |               id | name                                                 | path                                                                                                    | type              |
+    |----+-----------------+----------------------------------------+------------------+------------------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------|
+    |  0 |       286670228 | People who are parents.                |    6002714398372 | Parents (All)                                        | [u'Demographics', u'Parents', u'All Parents', u'Parents (All)']                                         | family_statuses   |
+    |  1 |        92661179 | Parents with children 18-26 years old. |    6023005718983 | (18-26 Years) Parents with Adult Children            | [u'Demographics', u'Parents', u'All Parents', u'(18-26 Years) Parents with Adult Children ']            | family_statuses   |
+    |  2 |        45169601 | Parents with children 13-18 years old. |    6023005681983 | (13-18 Years) Parents with Teenagers                 | [u'Demographics', u'Parents', u'All Parents', u'(13-18 Years) Parents with Teenagers ']                 | family_statuses   |
+    |  3 |        13123437 | Parents with Children ages 8-12        |    6023080302983 | (08-12 Years) Parents with Preteens                  | [u'Demographics', u'Parents', u'All Parents', u'(08-12 Years) Parents with Preteens']
+    ...
+    
 #### Find Interest IDs given name Name
     >>> from pysocialwatcher import watcherAPI 
     >>> watcher = watcherAPI() 
@@ -202,6 +216,7 @@ So it will collect the audience for all of the combinations specified in the inp
 
 
 ### Change Log
+* 0.1a3 - Resilient error handling when error code = 2 (try again more constants.MAX_NUMBER_TRY times)
 * 0.1a2 - Fix bug when have multiple operators like (and, not) in the same query
 * 0.1a1 - Add MIT License and 'Geo Location' field support in facebook API
 * 0.1a0 - First Alpha Release

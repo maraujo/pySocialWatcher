@@ -36,8 +36,41 @@ class FatalException(Exception):
     def __str__(self):
         return repr(self.value)
 
+def print_error_warning(error_json, params):
+    print_warning("Facebook Error Code: " + str(error_json["error"]["code"]))
+    print_warning("Facebook Error Message: " + str(error_json["error"]["message"]))
+    if error_json["error"].has_key("error_user_title") and error_json["error"].has_key("error_user_msg"):
+        print_warning("Facebook: " + str(error_json["error"]["error_user_title"]) + "\n" + str(
+            error_json["error"]["error_user_msg"]))
+    print_warning("Facebook Trace Id: " + str(error_json["error"]["fbtrace_id"]))
+    print_warning("Request Params : " + str(params))
 
-def send_request(url, params):
+def get_dataframe_from_json_response_query_data(json_response):
+    dataframe = pd.DataFrame()
+    for entry in json_response["data"]:
+        entry_details = {}
+        for field in constants.DETAILS_FIELD_FROM_FACEBOOK_TARGETING_SEARCH:
+            entry_details[field] = entry[field] if field in entry else None
+        dataframe = dataframe.append(entry_details, ignore_index=True)
+    return dataframe
+
+def handle_send_request_error(response, url, params, tryNumber):
+    try:
+        error_json = json.loads(response.text)
+        if error_json["error"]["code"] == constants.API_UNKOWN_ERROR_CODE:
+            print_error_warning(error_json, params)
+            time.sleep(constants.INITIAL_TRY_SLEEP_TIME * tryNumber)
+            return send_request(url, params, tryNumber)
+        else:
+            raise FatalException(str(error_json["error"]["message"]))
+    except:
+        raise FatalException(str(response.text))
+
+def send_request(url, params, tryNumber = 0):
+    tryNumber += 1
+    if tryNumber >= constants.MAX_NUMBER_TRY:
+        print_warning("Maxium Number of Tries reached. Failing.")
+        raise FatalException("Maximum try reached.")
     try:
         response = requests.get(url, params=params)
     except Exception as error:
@@ -45,17 +78,7 @@ def send_request(url, params):
     if response.status_code == 200:
         return response
     else:
-        if response.status_code >= 400 and response.status_code <= 499:
-            error_json = json.loads(response.text)
-            print_warning("Facebook Error Code: " + str(error_json["error"]["code"]))
-            print_warning("Facebook Error Message: " + str(error_json["error"]["message"]))
-            if error_json["error"].has_key("error_user_title") and error_json["error"].has_key("error_user_msg"):
-                print_warning("Facebook: " + str(error_json["error"]["error_user_title"]) + "\n" + str(error_json["error"]["error_user_msg"]))
-            print_warning("Facebook Trace Id: " + str(error_json["error"]["fbtrace_id"]))
-            print_warning("Request Params : " + str(params))
-            raise FatalException(str(error_json["error"]["message"]))
-        else:
-            raise FatalException(str(response.text))
+        return handle_send_request_error(response, url, params, tryNumber)
 
 
 def call_request_fb(target_request, token, account):
@@ -80,7 +103,6 @@ def trigger_facebook_call(index, row, token, account, shared_queue):
         print_warning("Row: " + str(row))
         print_warning("It will try again later")
         shared_queue.put((index, numpy.nan))
-
 
 
 def trigger_request_process_and_return_response(rows_to_request):
@@ -110,7 +132,7 @@ def trigger_request_process_and_return_response(rows_to_request):
 
 def check_exception(p):
     if p.exitcode != 0:
-        raise FatalException("Fatar Error: Check stacktrace for clue. No way to proceed from here.")
+        raise FatalException("FatalError: Check logging for clue. No way to proceed from here.")
 
 
 def print_info(message):
