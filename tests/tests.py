@@ -27,6 +27,8 @@ QUICK_EXAMPLE_POSTPROCESSED = get_abs_file_path_in_src_folder("output_examples/q
 JSON_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/small_peace_vs_war.json")
 JSON_QUICK_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/quick_example.json")
 JSON_TEST_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/test_example.json")
+JSON_EXAMPLE_FAIL_NAME = get_abs_file_path_in_src_folder("../tests/resources/small_peace_vs_war_fail_name.json")
+JSON_EXAMPLE_FAIL_FIELD = get_abs_file_path_in_src_folder("../tests/resources/small_peace_vs_war_fail_field.json")
 
 
 
@@ -97,6 +99,16 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
             self.crawler.check_tokens_account_valid()
         self.assertTrue(context.exception, FatalException)
 
+    def test_check_input_integrity(self):
+        data_json_name_error = self.crawler.read_json_file(JSON_EXAMPLE_FAIL_NAME)
+        with self.assertRaises(Exception) as context:
+            self.crawler.check_input_integrity(data_json_name_error)
+        self.assertTrue(context.exception, FatalException)
+        data_json_field_error = self.crawler.read_json_file(JSON_EXAMPLE_FAIL_NAME)
+        with self.assertRaises(Exception) as context:
+            self.crawler.check_input_integrity(data_json_field_error)
+        self.assertTrue(context.exception, FatalException)
+
     def test_load_tokens_file(self):
         constants.TOKENS = []
         self.assertListEqual(constants.TOKENS, [])
@@ -127,6 +139,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         dataframe = self.crawler.build_collection_dataframe(json_data)
         test_dataframe = load_dataframe_from_file(QUICK_EXAMPLE_SKELETON)
         assert_data_frame_almost_equal(dataframe,test_dataframe)
+
         # Testing Test Example
         json_data = self.crawler.read_json_file(JSON_TEST_EXAMPLE_INPUT)
         dataframe = self.crawler.build_collection_dataframe(json_data)
