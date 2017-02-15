@@ -17,3 +17,4 @@ pysocialwatcher/dataframe_*
 tests/*.csv
 /pysocialwatcher/input_examples/arab_awareness.json
 .cache
+!/pysocialwatcher/output_examples/quick_example_dataframe_skeleton.csv

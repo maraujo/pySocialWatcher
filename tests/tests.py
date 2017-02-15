@@ -21,7 +21,7 @@ INVALID_TOKENS_PATH = get_abs_file_path_in_src_folder("facebook_credentials_exam
 QUICK_EXAMPLE_SKELETON = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_skeleton.csv")
 TEST_EXAMPLE_SKELETON = ""
 QUICK_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_collected.csv")
-TEST_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/test_example_dataframe_skeleton.csv")
+TEST_EXAMPLE_SKELETON = get_abs_file_path_in_src_folder("output_examples/test_example_dataframe_skeleton.csv")
 QUICK_EXAMPLE_POSTPROCESSED = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_postprocessed.csv")
 # TEST_EXAMPLE_POSTPROCESSED = ""
 JSON_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/small_peace_vs_war.json")
@@ -143,7 +143,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         # Testing Test Example
         json_data = self.crawler.read_json_file(JSON_TEST_EXAMPLE_INPUT)
         dataframe = self.crawler.build_collection_dataframe(json_data)
-        test_dataframe = load_dataframe_from_file(TEST_EXAMPLE_COLLECTED)
+        test_dataframe = load_dataframe_from_file(TEST_EXAMPLE_SKELETON)
         assert_data_frame_almost_equal(dataframe, test_dataframe)
 
     def test_post_process_collection(self):
