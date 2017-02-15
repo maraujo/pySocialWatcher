@@ -13,7 +13,7 @@ tests/.coverage
 tokens.csv
 credentials.csv
 build
-pysocialwatcher/dataframe_collecting*
+pysocialwatcher/dataframe_*
 tests/*.csv
 /pysocialwatcher/input_examples/arab_awareness.json
 .cache

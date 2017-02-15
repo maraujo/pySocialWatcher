@@ -148,8 +148,13 @@ class PySocialWatcher:
 
     @staticmethod
     def check_input_integrity(input_data_json):
-        # Languages should have just 'or' key
-        pass
+        # Check input has name propertity
+        if not constants.INPUT_NAME_FIELD in input_data_json:
+            raise FatalException("Input should have key: " + constants.INPUT_NAME_FIELD)
+        # Check if every field in input is supported
+        for field in input_data_json.keys():
+            if not field in constants.DATAFRAME_COLUMNS:
+                raise FatalException("Field not supported: " + field)
 
     @staticmethod
     def run_data_collection(json_input_file_path):

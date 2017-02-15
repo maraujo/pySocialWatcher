@@ -24,7 +24,7 @@ QUICK_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/quick
 TEST_EXAMPLE_COLLECTED = get_abs_file_path_in_src_folder("output_examples/test_example_dataframe_skeleton.csv")
 QUICK_EXAMPLE_POSTPROCESSED = get_abs_file_path_in_src_folder("output_examples/quick_example_dataframe_postprocessed.csv")
 # TEST_EXAMPLE_POSTPROCESSED = ""
-JSON_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/example.json")
+JSON_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/small_peace_vs_war.json")
 JSON_QUICK_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/quick_example.json")
 JSON_TEST_EXAMPLE_INPUT = get_abs_file_path_in_src_folder("input_examples/test_example.json")
 

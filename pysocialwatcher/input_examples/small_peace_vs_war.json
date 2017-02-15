@@ -1,0 +1,52 @@
+{   "name": "Peace War Interest in US States",
+    "geo_locations": [
+      { "name": "regions", "values": [{"key":"3847"}],  "location_types": ["home"], "pySocialWatcherReference": "California" },
+     { "name": "regions", "values": [{"key":"3864"}],  "location_types": ["home"], "pySocialWatcherReference": "Massachusetts"}
+    ],
+    "scholarities":[
+      {
+        "name" : "Graduated",
+        "or" : [3,7,8,9,11]
+      },
+      {
+        "name" : "No Degree",
+        "or" : [1,12,13]
+      },{
+        "name" : "High School",
+        "or" : [2,4,5,6,10]
+      }
+    ],
+    "behavior": [{
+        "or": [6015559470583],
+        "name": "Expats"
+    },{
+        "not": [6015559470583],
+        "name": "Locals"
+    }],
+    "relationship_statuses" : [{
+      "or": [1, 11, 12, 13],
+      "name": "Single"
+    },
+    {
+      "or": [9, 10, 2],
+      "name": "Dating"
+    },
+    {
+      "or": [3, 4, 7, 8],
+      "name": "Married"
+    }],
+    "ages_ranges": [
+        {"min":18, "max":39},
+        {"min":40}
+    ],
+    "genders": [1,2],
+    "interests": [
+      null
+    ,{
+        "or": [6003047962244, 6002966337046, 6003091134016, 6003102992229],
+        "name": "All Peace"
+    },{
+        "or": [6003514121042, 6003496711680,6003188476455, 6004123573189, 6004107862409],
+        "name" : "All War"
+    }]
+}

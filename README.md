@@ -31,6 +31,7 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
     "behaviors",
     "education_statuses",
     "family_statuses",
+    "relationship_statuses",
     "locales",
     "genders",
     "age_min",
@@ -216,6 +217,7 @@ So it will collect the audience for all of the combinations specified in the inp
 
 
 ### Change Log
+* 0.1b2 - Add support to relationship_statuses and check input keys
 * 0.1b0 - Search any query with get_search_targeting_from_query_dataframe()
 * 0.1a3 - Resilient error handling when error code = 2 (try again more constants.MAX_NUMBER_TRY times)
 * 0.1a2 - Fix bug when have multiple operators like (and, not) in the same query
