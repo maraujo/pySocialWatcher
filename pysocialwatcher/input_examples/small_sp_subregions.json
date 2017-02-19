@@ -1,0 +1,47 @@
+{   "name": "Dengue and Depression in rich vs poor regions in Sao Paulo",
+    "geo_locations": [
+      { "name": "custom_locations",
+        "values": [{
+          "latitude": -23.6212,
+          "longitude": -46.7178,
+          "radius": 5
+      }],  "location_types": ["home"], "pySocialWatcherReference": "West Zone (rich)" },
+      {"name": "custom_locations",
+        "values": [{
+          "latitude": -23.5577,
+          "longitude": -46.5435,
+          "radius": 4
+        }],  "location_types": ["home"], "pySocialWatcherReference": "East Zone (poor)"}
+    ],
+    "scholarities":[
+      {
+        "name" : "Graduated",
+        "or" : [3,7,8,9,11]
+      },
+      {
+        "name" : "No Degree",
+        "or" : [1,12,13]
+      },{
+        "name" : "High School",
+        "or" : [2,4,5,6,10]
+      }
+    ],
+    "ages_ranges": [
+        {"min":18, "max":24},
+        {"min":25, "max":44},
+        {"min":45}
+    ],
+    "genders": [1,2],
+    "interests": [
+      null
+    ,{
+        "or": [6002955409650],
+        "name": "Dengue Fever"
+    },{
+        "or": [6003029802407],
+        "name" : "Majot depressive disorder awareness"
+    },{
+        "or": [6007828099136],
+        "name" : "Luxury Goods"
+    }]
+}
