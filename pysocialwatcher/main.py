@@ -153,12 +153,21 @@ class PySocialWatcher:
             raise FatalException("Input should have key: " + constants.INPUT_NAME_FIELD)
         # Check if every field in input is supported
         for field in input_data_json.keys():
-            if not field in constants.DATAFRAME_COLUMNS:
+            if not field in constants.ALLOWED_FIELDS_IN_INPUT:
                 raise FatalException("Field not supported: " + field)
+
+    @staticmethod
+    def expand_input_if_requested(input_data_json):
+        if constants.PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD in input_data_json:
+            for groups_ids in input_data_json[constants.PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD]:
+                interests_by_group_to_AND = get_interests_by_group_to_AND(input_data_json,groups_ids)
+                list_of_ANDS_between_groups = list(itertools.product(*interests_by_group_to_AND.values()))
+                add_list_of_ANDS_to_input(list_of_ANDS_between_groups, input_data_json)
 
     @staticmethod
     def run_data_collection(json_input_file_path):
         input_data_json = PySocialWatcher.read_json_file(json_input_file_path)
+        PySocialWatcher.expand_input_if_requested(input_data_json)
         PySocialWatcher.check_input_integrity(input_data_json)
         collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json)
         collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)

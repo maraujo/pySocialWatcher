@@ -211,6 +211,23 @@ def get_all_combinations_from_input(input_data_json):
     return all_combinations
 
 
+def add_list_of_ANDS_to_input(list_of_ANDS_between_groups,input_data_json):
+    for interests_to_AND in list_of_ANDS_between_groups:
+        names = []
+        and_ors = []
+        for interest_to_AND in interests_to_AND:
+            names.append(interest_to_AND[constants.INPUT_NAME_FIELD])
+            if "or" not in interest_to_AND:
+                raise Exception("Only AND of ors are supported")
+            and_ors.append(interest_to_AND["or"])
+        new_and_interest = {
+            constants.INPUT_NAME_FIELD : " AND ".join(names),
+            "and_ors" : and_ors,
+            "isAND" : True
+        }
+        input_data_json[constants.INPUT_INTEREST_FIELD].append(new_and_interest)
+
+
 def generate_collection_request_from_combination(combination, name):
     targeting = build_targeting(combination)
     dataframe_row = {}
@@ -271,28 +288,48 @@ def post_process_collection(collection_dataframe):
     return collection_dataframe
 
 
-def select_advance_targeting_type_array_ids(field_name, input_value, targeting):
-    api_field_name = get_api_field_name(field_name)
+def select_advance_targeting_type_array_ids(segment_type, input_value, targeting):
+    api_field_name = get_api_field_name(segment_type)
     if input_value:
         if input_value.has_key("or"):
             or_query = []
-            for id_or in input_value["or"]:
-                or_query.append({"id" : id_or})
+            for or_id in input_value["or"]:
+                or_query.append({"id" : or_id})
             targeting["flexible_spec"].append({api_field_name: or_query})
+
         if input_value.has_key("and"):
             for id_and in input_value["and"]:
-                targeting["flexible_spec"].append({field_name: {"id" : id_and}})
+                targeting["flexible_spec"].append({segment_type: {"id" : id_and}})
+
         if input_value.has_key("not"):
             targeting["exclusions"][api_field_name] = []
             for id_not in input_value["not"]:
                 targeting["exclusions"][api_field_name].append({"id" : id_not})
 
-        if not input_value.has_key("or") and not input_value.has_key("and") and not input_value.has_key("not"):
+        if input_value.has_key("and_ors"):
+            for or_ids in input_value["and_ors"]:
+                or_query = []
+                for or_id in or_ids:
+                    or_query.append({"id" : or_id})
+                targeting["flexible_spec"].append({segment_type: or_query})
+
+        if not input_value.has_key("or") and not input_value.has_key("and") and not input_value.has_key("not") and not input_value.has_key("and_ors"):
             raise JsonFormatException("Something wrong with: " + str(input_value))
 
 
-def select_advance_targeting_type_array_integer(field_name, input_value, targeting):
-    api_field_name = get_api_field_name(field_name)
+def get_interests_by_group_to_AND(input_data_json, groups_ids):
+    interests_by_group_to_AND = {}
+    for group_id in groups_ids:
+        interests_by_group_to_AND[group_id] = []
+    for interest_input in input_data_json[constants.INPUT_INTEREST_FIELD]:
+        if constants.GROUP_ID_FIELD in interest_input:
+            interest_group_id = interest_input[constants.GROUP_ID_FIELD]
+            if interest_group_id in interests_by_group_to_AND:
+                interests_by_group_to_AND[interest_group_id].append(interest_input)
+    return interests_by_group_to_AND
+
+def select_advance_targeting_type_array_integer(segment_type, input_value, targeting):
+    api_field_name = get_api_field_name(segment_type)
     if input_value:
         try:
             targeting["flexible_spec"].append({api_field_name : input_value["or"]})

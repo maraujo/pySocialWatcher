@@ -18,3 +18,4 @@ tests/*.csv
 /pysocialwatcher/input_examples/arab_awareness.json
 .cache
 !/pysocialwatcher/output_examples/quick_example_dataframe_skeleton.csv
+/pysocialwatcher/input_examples/gcc_health_with_and.json
