@@ -322,10 +322,11 @@ def get_interests_by_group_to_AND(input_data_json, groups_ids):
     for group_id in groups_ids:
         interests_by_group_to_AND[group_id] = []
     for interest_input in input_data_json[constants.INPUT_INTEREST_FIELD]:
-        if constants.GROUP_ID_FIELD in interest_input:
-            interest_group_id = interest_input[constants.GROUP_ID_FIELD]
-            if interest_group_id in interests_by_group_to_AND:
-                interests_by_group_to_AND[interest_group_id].append(interest_input)
+        if interest_input:
+            if constants.GROUP_ID_FIELD in interest_input:
+                interest_group_id = interest_input[constants.GROUP_ID_FIELD]
+                if interest_group_id in interests_by_group_to_AND:
+                    interests_by_group_to_AND[interest_group_id].append(interest_input)
     return interests_by_group_to_AND
 
 def select_advance_targeting_type_array_integer(segment_type, input_value, targeting):
