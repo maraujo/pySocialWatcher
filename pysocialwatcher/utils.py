@@ -57,12 +57,15 @@ def get_dataframe_from_json_response_query_data(json_response):
 def handle_send_request_error(response, url, params, tryNumber):
     try:
         error_json = json.loads(response.text)
-        if error_json["error"]["code"] == constants.API_UNKOWN_ERROR_CODE:
+        if error_json["error"]["code"] == constants.API_UNKOWN_ERROR_CODE_1 or error_json["error"]["code"] == constants.API_UNKOWN_ERROR_CODE_2:
             print_error_warning(error_json, params)
             time.sleep(constants.INITIAL_TRY_SLEEP_TIME * tryNumber)
             return send_request(url, params, tryNumber)
+        elif error_json["error"]["code"] == constants.INVALID_PARAMETER_ERROR and error_json["error"]["error_subcode"] == constants.FEW_USERS_IN_CUSTOM_LOCATIONS_SUBCODE_ERROR:
+            return get_fake_response()
         else:
-            raise FatalException(str(error_json["error"]["message"]))
+            logging.error("Could not handle error.")
+            raise FatalException(str(error_json["error"]))
     except:
         raise FatalException(str(response.text))
 
@@ -92,6 +95,13 @@ def call_request_fb(target_request, token, account):
     url = constants.REACHESTIMATE_URL.format(account)
     response = send_request(url, payload)
     return response.content
+
+def get_fake_response():
+    response = requests.models.Response()
+    response._content = constants.FAKE_DATA_RESPONSE_CONTENT
+    response.status_code = 200
+    logging.warn("Fake Response created: " + response.content)
+    return response
 
 
 def trigger_facebook_call(index, row, token, account, shared_queue):

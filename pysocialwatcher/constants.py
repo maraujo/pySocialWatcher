@@ -7,6 +7,8 @@ MAX_NUMBER_TRY = 10
 INITIAL_TRY_SLEEP_TIME = 300
 API_UNKOWN_ERROR_CODE_1 = 1
 API_UNKOWN_ERROR_CODE_2 = 2
+INVALID_PARAMETER_ERROR = 100
+FEW_USERS_IN_CUSTOM_LOCATIONS_SUBCODE_ERROR = 1885036
 NUMBER_OF_REQUESTS_PER_BUCKET = 100
 UNIQUE_TIME_ID = str(time.time()).split(".")[0]
 DATAFRAME_SKELETON_FILE_NAME = "dataframe_skeleton_" + UNIQUE_TIME_ID + ".csv"
@@ -89,46 +91,4 @@ ADVANCE_TARGETING_FIELDS = [
     INPUT_INTEREST_FIELD, INPUT_BEHAVIOR_FIELD, INPUT_SCHOLARITY_FIELD, INPUT_FAMILYSTATUS_FIELD
 ]
 
-
-# Old constants below ------------------------------------------------------------------------------------------
-# MORE1M_USERS_COUNTRIES = ["AE","AF","AL","AO","AR","AT","AU","AZ","BA","BD","BE","BG","BO","BR","CA","CD","CH","CL","CM","CN","CO","CR","CZ","DE","DK","DO","DZ","EC","EG","ES","ET","FI","FR","GB","GE","GH","GR","GT","HK","HN","HR","HT","HU","ID","IE","IL","IN","IQ","IT","JM","JO","JP","KE","KH","KR","KW","KZ","LA","LB","LK","LT","LY","MA","MG","ML","MM","MN","MX","MY","MZ","NG","NI","NL","NO","NP","NZ","OM","PA","PE","PH","PK","PL","PT","PY","QA","RO","RS","RU","SA","SE","SG","SK","SN","SV","TH","TN","TR","TW","TZ","UA","UG","US","UY","VE","VN","YE","ZA","ZM"]
-# MORE1M_USERS_COUNTRIES_old = ["IN","US","BR","ID","MX","PH","DE","GB","TR","FR","JP","IT","CA","ES","AU","AT","BE","CL","CZ","DK","FI","GR","HU","IE","IL","KR","NL","NZ","NO","PL","PT","SK","SE","CH"]
-#
-# # OECD Country List
-# OECD_COUNTRIES = ["US","MX","DE", "GB", "TR", "FR","JP","IT","CA","ES","AU","AT","BE","CL","CZ","DK","EE","FI","GR","HU","IS","IE","IL","KR","LV","LU","NL","NZ","NO","PL","PT","SK","SI","SE","CH"]
-# # English Spearker Countries
-# COUNTRIES_ENGLISH = ["US","AU", "NZ", "IE", "IS", "GB", "CA", "PH", "IN"]
-# # Western Europe Countries https://en.wikipedia.org/wiki/Western_Europe#Population
-# EUROPE_WESTERN = ["AT","BE","DK","FI","FR","DE","GR","IS", "IE","IT","LU","NL","NO","PT","ES","SE","CH","GB"]
-# # Too small facebook penetration countries
-# SMALL_FB_COUNTRIES = ["CN","JP","IN","ID","KR"]
-# NO_INTEREST_FLAG = "no_interest_selected"
-#
-#
-# # Example of data_groups structure. Each item in "queries" correspond a one type of experiment that will be runned for  each country.
-# # DATA_GROUPS = {
-# #   "queries" :{
-# #         [{
-# #             "responses" : [],
-# #             "requests"  : [],
-# #             "csv_lines" : [],
-# #         }],
-# #     "correlation_lines" : []
-# #     }
-# # }
-#
-# GROUND_TRUTH_COLUMNS = [
-#     "obesity",
-#     "high_glucose",
-#     "alcohol_dependeces",
-#     "tobacco",
-#     "war_disease",
-#     "arab_interests",
-#     "Pregnant Query Any Text 2"
-# ]
-# CSV_HEADERS = {
-#     "data_header" : ["analysis_name","ground_truth_column","country_code","country_name","country_population","country_facebook_population","min_age","max_age","gender","interest","exclusion","placebo","audience","aud_fb_users","bid_amount_median","bid_amount_max","account_budget","pacing_status","dedup_status","bid_amount_min","estimate_DAU","unsupported","cpm_curve_data","cpc_curve_data","reach_max","dedup_winning_rate","reach_min","cpa_curve_data","location","estimate_ready","k=0.001","k=0.05","k=0.5","k=1","k=2","k=3","k=10","k=100","aud_placebo_aud","aud/pla_aud_k=0.001","aud/pla_aud_k=0.05","aud/pla_aud_k=0.5","aud/pla_aud_k=1","aud/pla_aud_k=2","aud/pla_aud_k=3","aud/pla_aud_k=10","aud/pla_aud_k=100","high_glucose","obesity","alcohol_dependeces","tobacco"],
-#     "correlation_header" : ["interest","exclusion","k=0.001","k=0.05","k=0.5","k=1","k=2","k=3","k=10","k=100","aud/pla_aud_k=0.001","aud/pla_aud_k=0.05","aud/pla_aud_k=0.5","aud/pla_aud_k=1","aud/pla_aud_k=2","aud/pla_aud_k=3","aud/pla_aud_k=10","aud/pla_aud_k=100"]
-# }
-#
-# placebo_index = 0
+FAKE_DATA_RESPONSE_CONTENT = '{"mockResponse":true, "data": { "users":0, 	"bid_estimations":[ { "unsupported":false, "location":0, "reach_min":0,	"reach_max":0, "cpm_curve_data":"",	"cpc_curve_data":"", "cpa_curve_data":"", "dedup_winning_rate":0,"dedup_status":0, "pacing_status":0,"account_budget":0,"estimate_DAU":0, "curve":[	{"bid":0,"spend":0,"reach":0,"impressions":0,"actions":0}],"trace_id":"0","bid_amount_min":0,"bid_amount_median":0,"bid_amount_max":0}],"estimate_ready":false}}'

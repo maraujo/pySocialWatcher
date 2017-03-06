@@ -19,3 +19,5 @@ tests/*.csv
 .cache
 !/pysocialwatcher/output_examples/quick_example_dataframe_skeleton.csv
 /pysocialwatcher/input_examples/gcc_health_with_and.json
+/pysocialwatcher/input_examples/recollection_health_awareness.json
+/pysocialwatcher/input_examples/doha_subregions.json
