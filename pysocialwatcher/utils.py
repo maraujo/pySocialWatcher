@@ -210,7 +210,14 @@ def get_all_combinations_from_input(input_data_json):
     to_combine_fields = {}
     for field in constants.INPUT_FIELDS_TO_COMBINE:
         try:
-            to_combine_fields[field] = input_data_json[field]
+            if isinstance(input_data_json[field], list):
+                field_content = input_data_json[field]
+                to_combine_fields[field] = field_content
+            if isinstance(input_data_json[field], dict):
+                for intra_field_key in input_data_json[field].keys():
+                    to_combine_fields[intra_field_key] = input_data_json[field][intra_field_key]
+
+                # to_combine_fields[field] = build_AND_intra_field_combinations(input_data_json[field])
         except KeyError:
             print_warning("Field not expecified: " + field)
 
@@ -219,6 +226,15 @@ def get_all_combinations_from_input(input_data_json):
             to_combine_fields[field][index] = (field, value)
     all_combinations = list(itertools.product(*to_combine_fields.values()))
     return all_combinations
+
+def build_AND_intra_field_combinations(intra_field_data):
+    intra_fields = []
+    for field in intra_field_data.values():
+        intra_fields.append(field)
+    teste = list(itertools.product(*intra_fields))
+    import ipdb;ipdb.set_trace()
+    pass
+
 
 
 def add_list_of_ANDS_to_input(list_of_ANDS_between_groups,input_data_json):
@@ -312,7 +328,8 @@ def select_advance_targeting_type_array_ids(segment_type, input_value, targeting
                 targeting["flexible_spec"].append({segment_type: {"id" : id_and}})
 
         if input_value.has_key("not"):
-            targeting["exclusions"][api_field_name] = []
+            if not api_field_name in targeting["exclusions"].keys():
+                targeting["exclusions"][api_field_name] = []
             for id_not in input_value["not"]:
                 targeting["exclusions"][api_field_name].append({"id" : id_not})
 

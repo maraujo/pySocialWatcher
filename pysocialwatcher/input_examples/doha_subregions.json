@@ -1,35 +1,46 @@
-{   "name": "Doha Health Awareness",
+{   "name": "Doha Health Awareness 7-03-17",
     "geo_locations": [
       { "name": "custom_locations",
         "values": [{
-          "latitude": 25.3249,
-          "longitude": 51.5148,
-          "radius": 3,
+          "latitude": 25.3349,
+          "longitude": 51.5051,
+          "radius": 5,
           "distance_unit" : "kilometer"
-      }],  "location_types": ["home"], "pySocialWatcherReference": "West Bay" },
-      {"name": "custom_locations",
-        "values": [{
-          "latitude": 25.3711,
-          "longitude": 51.5498,
-          "radius": 4,
-          "distance_unit" : "kilometer"
-        }],  "location_types": ["home"], "pySocialWatcherReference": "Pearl"},
+      }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "West Bay" },
        {"name": "custom_locations",
         "values": [{
           "latitude": 25.2131,
           "longitude": 51.4400,
-          "radius": 3,
+          "radius": 5,
           "distance_unit" : "kilometer"
-        }],  "location_types": ["home"], "pySocialWatcherReference": "Labor City"},
+        }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Labor City"},
        {"name": "custom_locations",
         "values": [{
-          "latitude": 25.3523,
-          "longitude": 51.5124,
-          "radius": 4,
+          "latitude": 25.3004,
+          "longitude": 51.4304,
+          "radius": 5,
           "distance_unit" : "kilometer"
-        }],  "location_types": ["home"], "pySocialWatcherReference": "Diplomatic Area"}
+        }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Educational City"},
+      {"name": "custom_locations",
+        "values": [{
+          "latitude": 25.2603,
+          "longitude": 51.5288,
+          "radius": 5,
+          "distance_unit" : "kilometer"
+        }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Old Airport"}
     ],
-    "behavior": [
+    "behavior": {
+      "access_device" : [{
+          "or": [6004384041172],
+          "name": "iOS"
+        },{
+          "or": [6004386044572],
+          "name": "Android"
+        },{
+          "not": [6004384041172, 6004386044572],
+          "name": "Other"
+        }],
+      "citizenship" : [
         {
           "or": [6016916298983],
           "name": "India"
@@ -99,7 +110,8 @@
           ],
           "name": "Others"
         }
-    ],
+     ]
+    },
     "scholarities":[
       {
         "name" : "Graduated",
