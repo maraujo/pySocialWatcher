@@ -136,14 +136,14 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
     def test_build_collection_dataframe(self):
         #Testing Quick Example
         json_data = self.crawler.read_json_file(JSON_QUICK_EXAMPLE_INPUT)
-        dataframe = self.crawler.build_collection_dataframe(json_data)
-        test_dataframe = load_dataframe_from_file(QUICK_EXAMPLE_SKELETON)
+        dataframe = self.crawler.build_collection_dataframe(json_data).drop("timestamp", axis=1)
+        test_dataframe = load_dataframe_from_file(QUICK_EXAMPLE_SKELETON).drop("timestamp", axis=1)
         assert_data_frame_almost_equal(dataframe,test_dataframe)
 
         # Testing Test Example
         json_data = self.crawler.read_json_file(JSON_TEST_EXAMPLE_INPUT)
-        dataframe = self.crawler.build_collection_dataframe(json_data)
-        test_dataframe = load_dataframe_from_file(TEST_EXAMPLE_SKELETON)
+        dataframe = self.crawler.build_collection_dataframe(json_data).drop("timestamp", axis=1)
+        test_dataframe = load_dataframe_from_file(TEST_EXAMPLE_SKELETON).drop("timestamp", axis=1)
         assert_data_frame_almost_equal(dataframe, test_dataframe)
 
     def test_post_process_collection(self):
