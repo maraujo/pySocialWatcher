@@ -2,32 +2,32 @@
     "geo_locations": [
       { "name": "custom_locations",
         "values": [{
-          "latitude": 25.3349,
-          "longitude": 51.5051,
-          "radius": 5,
+          "latitude": 25.3239,
+          "longitude": 51.5314,
+          "radius": 1,
           "distance_unit" : "kilometer"
       }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "West Bay" },
        {"name": "custom_locations",
         "values": [{
-          "latitude": 25.2131,
-          "longitude": 51.4400,
-          "radius": 5,
+          "latitude": 25.1881,
+          "longitude": 51.4755,
+          "radius": 2,
           "distance_unit" : "kilometer"
         }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Labor City"},
        {"name": "custom_locations",
         "values": [{
-          "latitude": 25.3004,
-          "longitude": 51.4304,
-          "radius": 5,
+          "latitude": 25.3136,
+          "longitude": 51.4320,
+          "radius": 2,
           "distance_unit" : "kilometer"
         }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Educational City"},
       {"name": "custom_locations",
         "values": [{
-          "latitude": 25.2603,
-          "longitude": 51.5288,
-          "radius": 5,
+          "latitude": 25.3682,
+          "longitude": 51.5512,
+          "radius": 2,
           "distance_unit" : "kilometer"
-        }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Old Airport"}
+        }],  "location_types": ["home", "recent"], "pySocialWatcherReference": "Pearl"}
     ],
     "behavior": {
       "access_device" : [{

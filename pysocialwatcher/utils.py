@@ -155,6 +155,8 @@ def unstrict_literal_eval(string):
         return value
     except ValueError:
         return string
+    except SyntaxError:
+        return string
 
 
 def load_dataframe_from_file(file_path):

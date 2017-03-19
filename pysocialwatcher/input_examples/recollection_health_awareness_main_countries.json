@@ -1,0 +1,116 @@
+{   "name": "Arabic League Countries",
+    "geo_locations": [
+      {"name": "countries", "values": ["US"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ID"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MX"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GB"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["VN"], "location_types" : ["home"]}
+    ],
+    "ages_ranges": [
+        {"min":18},
+        {"min":18, "max":24},
+        {"min":20, "max":24},
+        {"min":25, "max":29},
+        {"min":30, "max":34},
+        {"min":35, "max":39},
+        {"min":40, "max":44},
+        {"min":45, "max":49},
+        {"min":50, "max":54},
+        {"min":55, "max":59}
+    ],
+    "genders": [0,1,2],
+    "interests": [
+     {
+        "or": [6003347231674],
+        "name": "Diabetes mellitus type 1 awareness"
+    },{
+        "or": [6003216903558],
+        "name" : "Diabetes mellitus type 2 awareness"
+    },{
+        "or": [6003605350287],
+        "name" : "Diabetic diet"
+    },{
+        "or": [6003143440161],
+        "name": "Gestational diabetes"
+    },{
+        "or": [6003357401587],
+        "name" : "Insulin resistance awareness"
+    },{
+        "or": [6003016845173],
+        "name" : "Diabetic hypoglycemia"
+    },{
+        "or": [6003413243781],
+        "name" : "Diabetes mellitus awareness"
+    },{
+        "or": [6016216684445],
+        "name": "Managing Diabetes"
+    },{
+        "or": [6003602241303],
+        "name": "Insulin index"
+    },{
+        "or": [6003347231674,6003216903558,6003605350287,6003143440161,6003357401587,6003016845173,6003413243781,6016216684445,6003602241303],
+        "name" : "All diabetes"
+    },{
+        "or": [6003190733601],
+        "name" : "Obesity awareness"
+    },{
+        "or": [6003989073306],
+        "name" : "Plus-size clothing"
+    },{
+        "or": [6002951487650],
+        "name" : "Weight loss (Fitness And wellness)"
+    },{
+        "or": [6003327856180],
+        "name" : "Dieting"
+    },{
+        "or": [6003267123358],
+        "name": "Bariatrics"
+    },{
+        "or": [6003190733601,6003989073306, 6002951487650, 6003327856180, 6003267123358],
+        "name": "All obesity"
+    },{
+        "or": [6003652209516],
+        "name": "Smoking"
+    },{
+        "or": [6003394601331],
+        "name": "Tobacco"
+    },{
+        "or": [6003163792722],
+        "name": "Tobacco smoking"
+    },{
+        "or": [6003341583996],
+        "name": "Lung cancer awareness"
+    },{
+        "or": [6002972563374],
+        "name": "Cigarette"
+    },{
+        "or": [6003285349559],
+        "name": "Hookah"
+    },{
+        "or": [6002936611572],
+        "name": "Smoking cessation"
+    },{
+        "or": [6003652209516,6003163792722,6003394601331,6003341583996,6002972563374,6003285349559,6002936611572],
+        "name": "All Smoking"
+    },{
+        "or": [6003464109203],
+        "name": "Health Care"
+    },{
+        "or": [6003384248805],
+        "name": "Fitness and wellness"
+    },{
+        "or": [6003258544357],
+        "name": "Health & wellness"
+    },{
+        "or": [6002991736368, 6003985771306, 6003349442621],
+        "name": "Reading, Technology, Entertainment, "
+    },{
+        "or": [6003188427578],
+        "name": "Facebook"
+    }]
+}

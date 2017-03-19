@@ -1,0 +1,214 @@
+{   "name": "Arabic League Countries",
+    "geo_locations": [
+     {"name": "countries", "values": ["AE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AF"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AL"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AU"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["AZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BD"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["BR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CD"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CL"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CM"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["CZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["DE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["DK"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["DO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["DZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["EC"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["EG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ES"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ET"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["FI"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["FR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GB"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["GT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["HK"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["HN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["HR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["HT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["HU"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ID"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IL"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IQ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["IT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["JM"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["JO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["JP"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["KE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["KH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["KR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["KW"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["KZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["LA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["LB"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["LK"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["LT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["LY"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ML"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MM"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MX"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MY"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["MZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NI"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NL"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NP"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["NZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["OM"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PK"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PL"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PT"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["PY"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["QA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["RO"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["RS"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["RU"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SK"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["SV"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TH"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TR"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TW"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["TZ"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["UA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["UG"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["US"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["UY"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["VE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["VN"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["YE"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ZA"], "location_types" : ["home"]},
+      {"name": "countries", "values": ["ZM"], "location_types" : ["home"]}
+    ],
+    "ages_ranges": [
+        {"min":18},
+        {"min":18, "max":24},
+        {"min":20, "max":24},
+        {"min":25, "max":29},
+        {"min":30, "max":34},
+        {"min":35, "max":39},
+        {"min":40, "max":44},
+        {"min":45, "max":49},
+        {"min":50, "max":54},
+        {"min":55, "max":59}
+    ],
+    "genders": [0,1,2],
+    "interests": [
+     {
+        "or": [6003347231674],
+        "name": "Diabetes mellitus type 1 awareness"
+    },{
+        "or": [6003216903558],
+        "name" : "Diabetes mellitus type 2 awareness"
+    },{
+        "or": [6003605350287],
+        "name" : "Diabetic diet"
+    },{
+        "or": [6003143440161],
+        "name": "Gestational diabetes"
+    },{
+        "or": [6003357401587],
+        "name" : "Insulin resistance awareness"
+    },{
+        "or": [6003016845173],
+        "name" : "Diabetic hypoglycemia"
+    },{
+        "or": [6003413243781],
+        "name" : "Diabetes mellitus awareness"
+    },{
+        "or": [6016216684445],
+        "name": "Managing Diabetes"
+    },{
+        "or": [6003602241303],
+        "name": "Insulin index"
+    },{
+        "or": [6003347231674,6003216903558,6003605350287,6003143440161,6003357401587,6003016845173,6003413243781,6016216684445,6003602241303],
+        "name" : "All diabetes"
+    },{
+        "or": [6003190733601],
+        "name" : "Obesity awareness"
+    },{
+        "or": [6003989073306],
+        "name" : "Plus-size clothing"
+    },{
+        "or": [6002951487650],
+        "name" : "Weight loss (Fitness And wellness)"
+    },{
+        "or": [6003327856180],
+        "name" : "Dieting"
+    },{
+        "or": [6003267123358],
+        "name": "Bariatrics"
+    },{
+        "or": [6003190733601,6003989073306, 6002951487650, 6003327856180, 6003267123358],
+        "name": "All obesity"
+    },{
+        "or": [6003652209516],
+        "name": "Smoking"
+    },{
+        "or": [6003394601331],
+        "name": "Tobacco"
+    },{
+        "or": [6003163792722],
+        "name": "Tobacco smoking"
+    },{
+        "or": [6003341583996],
+        "name": "Lung cancer awareness"
+    },{
+        "or": [6002972563374],
+        "name": "Cigarette"
+    },{
+        "or": [6003285349559],
+        "name": "Hookah"
+    },{
+        "or": [6002936611572],
+        "name": "Smoking cessation"
+    },{
+        "or": [6003652209516,6003163792722,6003394601331,6003341583996,6002972563374,6003285349559,6002936611572],
+        "name": "All Smoking"
+    },{
+        "or": [6003464109203],
+        "name": "Health Care"
+    },{
+        "or": [6003384248805],
+        "name": "Fitness and wellness"
+    },{
+        "or": [6003258544357],
+        "name": "Health & wellness"
+    },{
+        "or": [6002991736368, 6003985771306, 6003349442621],
+        "name": "Reading, Technology, Entertainment, "
+    },{
+        "or": [6003188427578],
+        "name": "Facebook"
+    }]
+}
