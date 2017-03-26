@@ -84,13 +84,18 @@ def send_request(url, params, tryNumber = 0):
         return handle_send_request_error(response, url, params, tryNumber)
 
 
-def call_request_fb(target_request, token, account):
+def call_request_fb(row, token, account):
+    target_request = row[constants.TARGETING_FIELD]
+    platform = constants.PUBLISHER_PLATFORM_DEFAULT
+    if constants.API_PUBLISHER_PLATFORMS_FIELD in row.index:
+        platform = row[constants.API_PUBLISHER_PLATFORMS_FIELD]
     payload = {
         'currency': 'USD',
         'optimize_for': "OFFSITE_CONVERSIONS",
         'targeting_spec': json.dumps(target_request),
-        'access_token': token
+        'access_token': token,
     }
+    payload[constants.API_PUBLISHER_PLATFORMS_FIELD] = platform
     print_info("\tSending in request: {}".format(payload["targeting_spec"]))
     url = constants.REACHESTIMATE_URL.format(account)
     response = send_request(url, payload)
@@ -106,13 +111,26 @@ def get_fake_response():
 
 def trigger_facebook_call(index, row, token, account, shared_queue):
     try:
-        response = call_request_fb(row[constants.TARGETING_FIELD], token, account)
+        response = call_request_fb(row, token, account)
         shared_queue.put((index, response))
     except RequestException:
         print_warning("Warning Facebook Request Failed")
         print_warning("Row: " + str(row))
         print_warning("It will try again later")
         shared_queue.put((index, numpy.nan))
+
+
+def add_timestamp(dataframe):
+    dataframe["timestamp"] = constants.UNIQUE_TIME_ID
+    return dataframe
+
+
+def add_published_platforms(dataframe, input_json):
+    platforms = constants.PUBLISHER_PLATFORM_DEFAULT
+    if constants.API_PUBLISHER_PLATFORMS_FIELD in input_json:
+        platforms = input_json[constants.API_PUBLISHER_PLATFORMS_FIELD]
+    dataframe[constants.API_PUBLISHER_PLATFORMS_FIELD] = json.dumps(platforms)
+    return dataframe
 
 
 def trigger_request_process_and_return_response(rows_to_request):
@@ -414,7 +432,9 @@ def print_collecting_progress(uncomplete_df, df):
                                                                      full_size - uncomplete_df_size, full_size))
 def send_dumb_query(token, account):
     try:
-        call_request_fb(constants.DEFAULT_DUMB_TARGETING, token, account)
+        row = pd.Series()
+        row[constants.TARGETING_FIELD] = constants.DEFAULT_DUMB_TARGETING
+        call_request_fb(row, token, account)
     except Exception as error:
         print_warning("Token or Account Number Error:")
         print_warning("Token:" + token)

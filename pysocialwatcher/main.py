@@ -109,7 +109,8 @@ class PySocialWatcher:
             print_info("Completed: {0:.2f}".format(100*index/float(len(input_combinations))))
             collection_queries.append(generate_collection_request_from_combination(combination, input_data_json[constants.INPUT_NAME_FIELD]))
         dataframe = collection_dataframe.append(collection_queries)
-        dataframe["timestamp"] = constants.UNIQUE_TIME_ID
+        dataframe = add_timestamp(dataframe)
+        dataframe = add_published_platforms(dataframe, input_data_json)
         if constants.SAVE_EMPTY:
             dataframe.to_csv(constants.DATAFRAME_SKELETON_FILE_NAME)
         save_skeleton_dataframe(dataframe)

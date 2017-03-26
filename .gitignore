@@ -25,3 +25,5 @@ tests/*.csv
 /pysocialwatcher/input_examples/recollection_health_awareness_all.json
 /pysocialwatcher/input_examples/recollection_health_awareness_main_countries.json
 /pysocialwatcher/input_examples/recollection_health_awareness_main_countries_null.json
+/pysocialwatcher/collected_data/*
+/pysocialwatcher/input_examples/doha_subregions_cell.json
