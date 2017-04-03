@@ -86,17 +86,13 @@ def send_request(url, params, tryNumber = 0):
 
 def call_request_fb(row, token, account):
     target_request = row[constants.TARGETING_FIELD]
-    platform = constants.PUBLISHER_PLATFORM_DEFAULT
-    if constants.API_PUBLISHER_PLATFORMS_FIELD in row.index:
-        platform = row[constants.API_PUBLISHER_PLATFORMS_FIELD]
     payload = {
         'currency': 'USD',
-        'optimize_for': "OFFSITE_CONVERSIONS",
+        'optimize_for': "NONE",
         'targeting_spec': json.dumps(target_request),
         'access_token': token,
     }
-    payload[constants.API_PUBLISHER_PLATFORMS_FIELD] = platform
-    print_info("\tSending in request: {}".format(payload["targeting_spec"]))
+    print_info("\tSending in request: {}".format(payload))
     url = constants.REACHESTIMATE_URL.format(account)
     response = send_request(url, payload)
     return response.content
@@ -274,16 +270,16 @@ def add_list_of_ANDS_to_input(list_of_ANDS_between_groups,input_data_json):
         input_data_json[constants.INPUT_INTEREST_FIELD].append(new_and_interest)
 
 
-def generate_collection_request_from_combination(combination, name):
-    targeting = build_targeting(combination)
+def generate_collection_request_from_combination(current_combination, input_data):
+    targeting = build_targeting(current_combination,input_data)
     dataframe_row = {}
-    for field in combination:
+    for field in current_combination:
         field_name = field[0]
         value = field[1]
         dataframe_row[field_name] = value
-    dataframe_row[constants.ALLFIELDS_FIELD] = combination
+    dataframe_row[constants.ALLFIELDS_FIELD] = current_combination
     dataframe_row[constants.TARGETING_FIELD] = targeting
-    dataframe_row[constants.INPUT_NAME_FIELD] = name
+    dataframe_row[constants.INPUT_NAME_FIELD] = input_data[constants.INPUT_NAME_FIELD]
     return dataframe_row
 
 
@@ -348,6 +344,8 @@ def select_advance_targeting_type_array_ids(segment_type, input_value, targeting
                 targeting["flexible_spec"].append({segment_type: {"id" : id_and}})
 
         if input_value.has_key("not"):
+            if not "exclusions" in targeting:
+                targeting["exclusions"] = {}
             if not api_field_name in targeting["exclusions"].keys():
                 targeting["exclusions"][api_field_name] = []
             for id_not in input_value["not"]:
@@ -388,7 +386,6 @@ def select_advance_targeting_type_array_integer(segment_type, input_value, targe
 def select_advance_targeting_fields(targeting, input_combination_dictionary):
     # Selecting Advance Targeting
     targeting["flexible_spec"] = []
-    targeting["exclusions"] = {}
 
     for advance_field in constants.ADVANCE_TARGETING_FIELDS_TYPE_ARRAY_IDS:
         if input_combination_dictionary.has_key(advance_field):
@@ -399,11 +396,19 @@ def select_advance_targeting_fields(targeting, input_combination_dictionary):
     return targeting
 
 
-def build_targeting(input_combination):
+def select_publisher_platform(targeting, input_data):
+    # Selecting Publisher Platform
+    platform = constants.PUBLISHER_PLATFORM_DEFAULT
+    if constants.API_PUBLISHER_PLATFORMS_FIELD in input_data:
+        platform = input_data[constants.API_PUBLISHER_PLATFORMS_FIELD]
+    targeting[constants.API_PUBLISHER_PLATFORMS_FIELD] = platform
+
+def build_targeting(current_combination, input_data):
     targeting = {}
-    input_combination_dictionary = dict(input_combination)
+    input_combination_dictionary = dict(current_combination)
     select_common_fields_in_targeting(targeting, input_combination_dictionary)
     select_advance_targeting_fields(targeting, input_combination_dictionary)
+    select_publisher_platform(targeting, input_data)
     return targeting
 
 

@@ -107,7 +107,7 @@ class PySocialWatcher:
         print_info("Total API Requests:" + str(len(input_combinations)))
         for index,combination in enumerate(input_combinations):
             print_info("Completed: {0:.2f}".format(100*index/float(len(input_combinations))))
-            collection_queries.append(generate_collection_request_from_combination(combination, input_data_json[constants.INPUT_NAME_FIELD]))
+            collection_queries.append(generate_collection_request_from_combination(combination, input_data_json))
         dataframe = collection_dataframe.append(collection_queries)
         dataframe = add_timestamp(dataframe)
         dataframe = add_published_platforms(dataframe, input_data_json)

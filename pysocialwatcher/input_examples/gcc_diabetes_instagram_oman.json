@@ -1,0 +1,11 @@
+{   "name": "GCC Diabetes Instagram",
+     "publisher_platforms": ["instagram"],
+    "geo_locations": [
+      { "name": "countries", "values": ["QA"],  "location_types": ["home"] }
+    ],
+    "ages_ranges": [
+        {"min":20, "max":24}
+    ],
+    "genders": [0],
+    "interests": [null]
+}

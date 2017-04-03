@@ -1,5 +1,5 @@
-{   "name": "Arabic League Countries",
-     "publisher_platforms": ["facebook"],
+{   "name": "GCC Diabetes Instagram + Facebook",
+     "publisher_platforms": ["facebook","instagram"],
     "geo_locations": [
       { "name": "countries", "values": ["BH"],  "location_types": ["home"] },
       { "name": "countries", "values": ["KW"],  "location_types": ["home"] },
@@ -28,20 +28,5 @@
     ,{
         "or": [6003413243781,6003216903558,6003347231674,6003605350287,6003143440161],
         "name" : "diabetes awareness"
-    },{
-        "or": [6003413243781],
-        "name" : "Diabetes mellitus awareness"
-    },{
-        "or": [6003347231674],
-        "name": "Diabetes mellitus type 1 awareness"
-    },{
-        "or": [6003216903558],
-        "name" : "Diabetes mellitus type 2 awareness"
-    },{
-        "or": [6003605350287],
-        "name" : "Diabetic diet"
-    },{
-        "or": [6003143440161],
-        "name": "Gestational diabetes"
     }]
 }
