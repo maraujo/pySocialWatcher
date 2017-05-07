@@ -1,5 +1,21 @@
 # pySocialWatcher
-###A Social Data Collector from Facebook Marketing API
+### A Social Data Collector from Facebook Marketing API
+
+#### If this package helps your research somehow, please reference this paper:
+
+```
+@inproceedings{araujo2017facebook,
+ author = {Araujo, Matheus and Mejova, Yelena and Weber, Ingmar and Benevenuto, Fabricio},
+ title = {Using Facebook Ads Audiences for Global Lifestyle Disease Surveillance: Promises and Limitations},
+ series = {WebSci '17},
+ year = {2017},
+ location = {Troy, USA},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {Facebook, Advertising, Epidemiology, Social Media, Health},
+} 
+```
+
  
 [![Build Status](https://travis-ci.org/maraujo/pySocialWatcher.svg?branch=master)](https://travis-ci.org/maraujo/pySocialWatcher)
 [![codecov](https://codecov.io/gh/maraujo/pySocialWatcher/branch/dev/graph/badge.svg)](https://codecov.io/gh/maraujo/pySocialWatcher)
