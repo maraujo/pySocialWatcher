@@ -1,7 +1,7 @@
 # pySocialWatcher
 ### A Social Data Collector from Facebook Marketing API
 
-#### If this package helps your research somehow, please reference this paper:
+#### If this package helps your research somehow, reference this paper:
 
 ```
 @inproceedings{araujo2017facebook,
@@ -22,7 +22,7 @@
 
 **Package Name:** pysocialwatcher
 
-**Facebook Ads API version supported:** 2.8
+**Facebook Ads API version supported:** 2.9
 
 **License:** MIT
 

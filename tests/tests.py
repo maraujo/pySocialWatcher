@@ -133,6 +133,7 @@ class TestFacebookMarketingCrawler(unittest.TestCase):
         data_json = self.crawler.read_json_file(JSON_EXAMPLE_INPUT)
         self.assertTrue(type(data_json), type({}))
 
+    @unittest.skip("Send Request Test Skippied")
     def test_build_collection_dataframe(self):
         #Testing Quick Example
         json_data = self.crawler.read_json_file(JSON_QUICK_EXAMPLE_INPUT)

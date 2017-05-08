@@ -27,3 +27,13 @@ tests/*.csv
 /pysocialwatcher/input_examples/recollection_health_awareness_main_countries_null.json
 /pysocialwatcher/collected_data/*
 /pysocialwatcher/input_examples/doha_subregions_cell.json
+/pysocialwatcher/input_examples/gcc_diabetes_facebook.json
+/pysocialwatcher/input_examples/gcc_placebo_facebook.json
+/pysocialwatcher/input_examples/gcc_diabetes_audience_network.json
+/pysocialwatcher/input_examples/gcc_diabetes_instagram_and_facebook.json
+/pysocialwatcher/input_examples/gcc_diabetes_instagram_and_facebook_and_audience_network.json
+/pysocialwatcher/input_examples/gcc_diabetes_instagram.json
+/pysocialwatcher/input_examples/gcc_diabetes_instagram_oman.json
+/pysocialwatcher/input_examples/small_peace_vs_war.json
+/pysocialwatcher/input_examples/small_sp_subregions.json
+/pysocialwatcher/input_examples/soccer_gcc_example.json
