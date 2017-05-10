@@ -26,6 +26,8 @@
 
 **License:** MIT
 
+**Python Version:** 2.7
+
 
 ### What is this for
 This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
