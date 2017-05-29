@@ -12,7 +12,7 @@
  location = {Troy, USA},
  publisher = {ACM},
  address = {New York, NY, USA},
- keywords = {Facebook, Advertising, Epidemiology, Social Media, Health},
+ keywords = {Facebook, Advertising, Epidemihology, Social Media, Health},
 } 
 ```
 
@@ -235,6 +235,7 @@ So it will collect the audience for all of the combinations specified in the inp
 
 
 ### Change Log
+* 0.1d - Add support to household_composition
 * 0.1b2 - Add support to relationship_statuses and check input keys
 * 0.1b0 - Search any query with get_search_targeting_from_query_dataframe()
 * 0.1a3 - Resilient error handling when error code = 2 (try again more constants.MAX_NUMBER_TRY times)

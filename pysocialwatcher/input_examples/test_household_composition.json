@@ -1,0 +1,13 @@
+{   "name": "Housemates in Brazil",
+    "geo_locations": [
+      { "name": "countries", "values": ["BR"], "location_type":["recent"] }
+    ],
+    "genders": [0],
+    "ages_ranges": [
+        {"min":18, "max":24}
+    ],
+    "household_composition" : [{
+        "or": [6024956935783],
+        "name": "Housemate-based Households"
+      }]
+}
