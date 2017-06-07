@@ -377,9 +377,16 @@ def get_interests_by_group_to_AND(input_data_json, groups_ids):
 def select_advance_targeting_type_array_integer(segment_type, input_value, targeting):
     api_field_name = get_api_field_name(segment_type)
     if input_value:
-        try:
-            targeting["flexible_spec"].append({api_field_name : input_value["or"]})
-        except:
+        if "or" in input_value:
+            targeting["flexible_spec"].append({api_field_name: input_value["or"]})
+        elif "not" in input_value:
+            if not "exclusions" in targeting:
+                targeting["exclusions"] = {}
+            if not api_field_name in targeting["exclusions"].keys():
+                targeting["exclusions"][api_field_name] = []
+            for value in input_value["not"]:
+                targeting["exclusions"][api_field_name].append(value)
+        else:
             raise JsonFormatException("Something wrong with: " + str(input_value))
 
 

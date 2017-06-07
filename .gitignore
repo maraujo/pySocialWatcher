@@ -37,3 +37,4 @@ tests/*.csv
 /pysocialwatcher/input_examples/small_peace_vs_war.json
 /pysocialwatcher/input_examples/small_sp_subregions.json
 /pysocialwatcher/input_examples/soccer_gcc_example.json
+/pysocialwatcher/input_examples/newyork_expats.json

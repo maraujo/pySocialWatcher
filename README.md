@@ -235,6 +235,7 @@ So it will collect the audience for all of the combinations specified in the inp
 
 
 ### Change Log
+* 0.1e - Add support to *not* for demographics that uses specific integer numbers such as scholarity
 * 0.1d - Add support to household_composition
 * 0.1b2 - Add support to relationship_statuses and check input keys
 * 0.1b0 - Search any query with get_search_targeting_from_query_dataframe()

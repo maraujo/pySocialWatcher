@@ -1,0 +1,15 @@
+{   "name": "Not unspecified education level in Libya",
+    "geo_locations": [
+        { "name": "countries", "values": ["LY"],  "location_types": ["home"] }
+    ],
+    "genders": [0],
+    "ages_ranges": [
+        {"min": 18}
+    ],
+    "scholarities": [
+        {
+        "name": "No College Degree",
+        "not": [12]
+        }
+    ]
+}
