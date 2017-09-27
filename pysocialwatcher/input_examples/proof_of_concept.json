@@ -1,0 +1,27 @@
+{
+	"languages": [null],
+	"interests": [{
+		"or": ["6003413458089"],
+		"name": ["Opel Omega"]
+	}],
+	"publisher_platforms": ["facebook"],
+	"geo_locations": [{
+		"values": ["BR"],
+		"name": "countries",
+		"location_types": ["home"]
+	}],
+	"name": "Broad list of interest per country",
+	"behavior": [{
+		"not": [6015559470583],
+		"name": "Not Expats"
+	}, {
+		"not": [6015559470583],
+		"or": [6025978286383],
+		"name": "Not Expats who are close friends of an expats"
+	}],
+	"genders": [0],
+	"ages_ranges": [{
+		"max": 65,
+		"min": 18
+	}]
+}
