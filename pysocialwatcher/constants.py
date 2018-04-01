@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-REACHESTIMATE_URL = "https://graph.facebook.com/v2.11/act_{}/reachestimate"
+REACHESTIMATE_URL = "https://graph.facebook.com/v2.11/act_{}/delivery_estimate"
 GRAPH_SEARCH_URL = "https://graph.facebook.com/v2.11/search"
 TARGETING_SEARCH_URL = "https://graph.facebook.com/v2.11/act_{}/targetingsearch"
 SAVE_EMPTY = True
@@ -34,13 +34,14 @@ INPUT_FAMILYSTATUS_FIELD = "family_statuses"
 INPUT_RELATIONSHIPSTATUS_FIELD = "relationship_statuses"
 TARGETING_FIELD = "targeting"
 RESPONSE_FIELD = "response"
-AUDIENCE_FIELD = "audience"
+DAU_AUDIENCE_FIELD = "dau_audience"
+MAU_AUDIENCE_FIELD = "mau_audience"
 ALLFIELDS_FIELD = "all_fields"
 INPUT_NAME_FIELD = "name"
 PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD = "perform_AND_between_groups"
 MIN_AGE = "min"
 MAX_AGE = "max"
-DETAILS_FIELD_FROM_FACEBOOK_TARGETING_SEARCH = ["id", "name", "type", "description", "audience_size", "path","key","supports_city","supports_region"]
+DETAILS_FIELD_FROM_FACEBOOK_TARGETING_SEARCH = ["id", "name", "type", "description", "dau_audience_size", "mau_audience_size", "path","key","supports_city","supports_region"]
 API_INTEREST_FIELD = "interests"
 API_BEHAVIOR_FIELD = "behaviors"
 API_HOUSEHOLD_COMPOSITION_FIELD = "household_composition"
@@ -72,7 +73,7 @@ INPUT_FIELDS_TO_COMBINE = [
     INPUT_HOUSEHOLD_COMPOSITION_FIELD
 ]
 
-DATAFRAME_COLUMNS = [INPUT_NAME_FIELD] + INPUT_FIELDS_TO_COMBINE + [ALLFIELDS_FIELD, TARGETING_FIELD, RESPONSE_FIELD, AUDIENCE_FIELD ]
+DATAFRAME_COLUMNS = [INPUT_NAME_FIELD] + INPUT_FIELDS_TO_COMBINE + [ALLFIELDS_FIELD, TARGETING_FIELD, RESPONSE_FIELD, DAU_AUDIENCE_FIELD, MAU_AUDIENCE_FIELD ]
 
 ALLOWED_FIELDS_IN_INPUT = DATAFRAME_COLUMNS + [PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD] + [API_PUBLISHER_PLATFORMS_FIELD]
 
