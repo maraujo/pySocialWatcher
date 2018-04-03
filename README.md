@@ -237,6 +237,7 @@ So it will collect the audience for all of the combinations specified in the inp
 1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
 
 ### Change Log
+* 0.1g - Besides MAU, now we also captures DAU. Thanks @VatsalaSingh.
 * 0.1f - Call version v2.11 of Facebook Marketing API
 * 0.1e - Add support to *not* for demographics that uses specific integer numbers such as scholarity
 * 0.1d - Add support to household_composition

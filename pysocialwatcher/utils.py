@@ -331,7 +331,7 @@ def process_mau_audience_from_response(literal_response):
 
 def post_process_collection(collection_dataframe):
     # For now just capture audience
-    print_info("Computing Audience column")
+    print_info("Computing Audience and DAU column")
     collection_dataframe["dau_audience"] = collection_dataframe["response"].apply(
         lambda x: process_dau_audience_from_response(x))
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pysocialwatcher',
-      version='0.1f',
+      version='0.1g',
       description='pySocialWatcher : Social Watcher through Facebook Marketing API',
       url='https://github.com/maraujo/pySocialWatcher',
       long_description="""
@@ -9,7 +9,7 @@ setup(name='pysocialwatcher',
             Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
       """,
       author='Matheus Araujo - QCRI-HBKU',
-      author_email='maraujo@hbku.edu.qa',
+      author_email='arauj021@umn.edu',
       license='MIT',
       packages=['pysocialwatcher'],
       classifiers=[
