@@ -89,6 +89,7 @@ def call_request_fb(row, token, account):
     payload = {
         'currency': 'USD',
         'optimize_for': "NONE",
+        'optimization_goal': "AD_RECALL_LIFT",
         'targeting_spec': json.dumps(target_request),
         'access_token': token,
     }
