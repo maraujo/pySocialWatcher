@@ -317,16 +317,26 @@ def get_api_field_name(field_name):
     return constants.INPUT_TO_API_FIELD_NAME[field_name]
 
 
-def process_audience_from_response(literal_response):
-    audience = json.loads(literal_response)["data"]["users"]
+def process_dau_audience_from_response(literal_response):
+    aud = json.loads(literal_response)["data"][0]
+    audience=aud["estimate_dau"]
+    return int(audience)
+
+def process_mau_audience_from_response(literal_response):
+    aud = json.loads(literal_response)["data"][0]
+    audience=aud["estimate_mau"]
     return int(audience)
 
 
 def post_process_collection(collection_dataframe):
     # For now just capture audience
     print_info("Computing Audience column")
-    collection_dataframe["audience"] = collection_dataframe["response"].apply(
-        lambda x: process_audience_from_response(x))
+    collection_dataframe["dau_audience"] = collection_dataframe["response"].apply(
+        lambda x: process_dau_audience_from_response(x))
+
+    collection_dataframe["mau_audience"] = collection_dataframe["response"].apply(
+        lambda x: process_mau_audience_from_response(x))
+
     return collection_dataframe
 
 
