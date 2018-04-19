@@ -223,12 +223,12 @@ So it will collect the audience for all of the combinations specified in the inp
     ....
 
 #### Advaced Configurations
-#####Change Sleep time between requests to 10s:
+##### Change Sleep time between requests to 10s:
 
     from pysocialwatcher import constants
-    constants.SLEEP = 10
+    constants.SLEEP_TIME = 10
 
-#####Change save temporary file every 1000 requests:
+##### Change save temporary file every 1000 requests:
 
     from pysocialwatcher import constants
     constants.SAVE_EVERY = 1000
