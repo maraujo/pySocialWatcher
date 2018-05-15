@@ -70,6 +70,7 @@ def handle_send_request_error(response, url, params, tryNumber):
         raise FatalException(str(response.text))
 
 def send_request(url, params, tryNumber = 0):
+    print_warning('requesting URL %s'%(url))
     tryNumber += 1
     if tryNumber >= constants.MAX_NUMBER_TRY:
         print_warning("Maxium Number of Tries reached. Failing.")
