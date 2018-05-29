@@ -93,7 +93,8 @@ def call_request_fb(row, token, account):
         'targeting_spec': json.dumps(target_request),
         'access_token': token,
     }
-    print_info("\tSending in request: {}".format(payload))
+#    payload_str = str(payload)
+#    print_warning("\tSending in request: %s"%(payload_str))
     url = constants.REACHESTIMATE_URL.format(account)
     response = send_request(url, payload)
     return response.content
@@ -115,6 +116,8 @@ def trigger_facebook_call(index, row, token, account, shared_queue):
         print_warning("Row: " + str(row))
         print_warning("It will try again later")
         shared_queue.put((index, numpy.nan))
+#    except Exception, e:
+#        print_warning("request failed because %s"%(e))
 
 
 def add_timestamp(dataframe):
@@ -352,7 +355,13 @@ def select_advance_targeting_type_array_ids(segment_type, input_value, targeting
 
         if input_value.has_key("and"):
             for id_and in input_value["and"]:
-                targeting["flexible_spec"].append({segment_type: {"id" : id_and}})
+                ## TODO: make the behavior AND query request less hacky
+                if(segment_type == constants.INPUT_BEHAVIOR_FIELD):
+                    if(len(targeting['flexible_spec']) == 1):
+                        targeting['flexible_spec'].append({api_field_name : []})
+                    targeting['flexible_spec'][1][api_field_name].append({"id" : id_and})
+                else:
+                    targeting["flexible_spec"].append({segment_type: {"id" : id_and}})
 
         if input_value.has_key("not"):
             if not "exclusions" in targeting:
