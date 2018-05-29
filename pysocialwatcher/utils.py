@@ -61,12 +61,21 @@ def handle_send_request_error(response, url, params, tryNumber):
             print_error_warning(error_json, params)
             time.sleep(constants.INITIAL_TRY_SLEEP_TIME * tryNumber)
             return send_request(url, params, tryNumber)
-        elif error_json["error"]["code"] == constants.INVALID_PARAMETER_ERROR and error_json["error"]["error_subcode"] == constants.FEW_USERS_IN_CUSTOM_LOCATIONS_SUBCODE_ERROR:
+        elif error_json["error"]["code"] == constants.INVALID_PARAMETER_ERROR and "error_subcode" in error_json["error"] and error_json["error"]["error_subcode"] == constants.FEW_USERS_IN_CUSTOM_LOCATIONS_SUBCODE_ERROR:
+            return get_fake_response()
+        elif "message" in error_json["error"] and "Invalid zip code" in error_json["error"]["message"] and constants.INGORE_INVALID_ZIP_CODES:
+            print_warning("Invalid Zip Code:" + str(params[constants.TARGETING_SPEC_FIELD]))
             return get_fake_response()
         else:
             logging.error("Could not handle error.")
+            logging.error("Error Code:" + str(error_json["error"]["code"]))
+            if "message" in error_json["error"]:
+                logging.error("Error Message:" + str(error_json["error"]["message"]))
+            if "error_subcode" in error_json["error"]:
+                logging.error("Error Subcode:" + str(error_json["error"]["error_subcode"]))
             raise FatalException(str(error_json["error"]))
-    except:
+    except Exception as e:
+        logging.error(e)
         raise FatalException(str(response.text))
 
 def send_request(url, params, tryNumber = 0):
@@ -119,6 +128,9 @@ def trigger_facebook_call(index, row, token, account, shared_queue):
 #    except Exception, e:
 #        print_warning("request failed because %s"%(e))
 
+def add_mocked_column(dataframe):
+    dataframe["mock_response"] = dataframe["response"].apply(lambda response: True if (constants.MOCK_RESPONSE_FIELD in response) else False)
+    return dataframe
 
 def add_timestamp(dataframe):
     dataframe["timestamp"] = constants.UNIQUE_TIME_ID
@@ -341,6 +353,7 @@ def post_process_collection(collection_dataframe):
     collection_dataframe["mau_audience"] = collection_dataframe["response"].apply(
         lambda x: process_mau_audience_from_response(x))
 
+    collection_dataframe = add_mocked_column(collection_dataframe)
     return collection_dataframe
 
 

@@ -11,8 +11,11 @@ INITIAL_TRY_SLEEP_TIME = 300
 API_UNKOWN_ERROR_CODE_1 = 1
 API_UNKOWN_ERROR_CODE_2 = 2
 INVALID_PARAMETER_ERROR = 100
+ZIPCODE_INVALID_SUBCODE_ERROR = None
 FEW_USERS_IN_CUSTOM_LOCATIONS_SUBCODE_ERROR = 1885036
 NUMBER_OF_REQUESTS_PER_BUCKET = 100
+INGORE_INVALID_ZIP_CODES = True
+MOCK_RESPONSE_FIELD = "mockResponse"
 UNIQUE_TIME_ID = str(time.time()).split(".")[0]
 DATAFRAME_SKELETON_FILE_NAME = "dataframe_skeleton_" + UNIQUE_TIME_ID + ".csv"
 DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME = "dataframe_collecting_" + UNIQUE_TIME_ID + ".csv"
@@ -33,6 +36,7 @@ INPUT_LANGUAGE_FIELD = "languages"
 INPUT_FAMILYSTATUS_FIELD = "family_statuses"
 INPUT_RELATIONSHIPSTATUS_FIELD = "relationship_statuses"
 TARGETING_FIELD = "targeting"
+TARGETING_SPEC_FIELD = "targeting_spec"
 RESPONSE_FIELD = "response"
 DAU_AUDIENCE_FIELD = "dau_audience"
 MAU_AUDIENCE_FIELD = "mau_audience"
@@ -105,4 +109,4 @@ ADVANCE_TARGETING_FIELDS = [
     INPUT_INTEREST_FIELD, INPUT_BEHAVIOR_FIELD, INPUT_SCHOLARITY_FIELD, INPUT_FAMILYSTATUS_FIELD, INPUT_BEHAVIOR_FIELD
 ]
 
-FAKE_DATA_RESPONSE_CONTENT = '{"mockResponse":true, "data": { "users":0, 	"bid_estimations":[ { "unsupported":false, "location":0, "reach_min":0,	"reach_max":0, "cpm_curve_data":"",	"cpc_curve_data":"", "cpa_curve_data":"", "dedup_winning_rate":0,"dedup_status":0, "pacing_status":0,"account_budget":0,"estimate_DAU":0, "curve":[	{"bid":0,"spend":0,"reach":0,"impressions":0,"actions":0}],"trace_id":"0","bid_amount_min":0,"bid_amount_median":0,"bid_amount_max":0}],"estimate_ready":false}}'
+FAKE_DATA_RESPONSE_CONTENT = '{"mockResponse":true, "data":[{"bid_estimate":{"min_bid":0,"median_bid":0,"max_bid":0},"daily_outcomes_curve":[{"spend":0,"reach":0,"impressions":0,"actions":0}],"estimate_dau":0,"estimate_mau":0,"estimate_ready":true}]}'
