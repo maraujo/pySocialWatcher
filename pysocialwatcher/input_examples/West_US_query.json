@@ -1,0 +1,30 @@
+{ 
+    "geo_locations": [
+        {"name" : "regions",
+         "values":[
+            {
+                "key": 3869,
+                "name":"US:3869",
+                "country":"US"
+            }, 
+            {
+                "key": 3893,
+                "name":"US:3893",
+                "country":"US"
+            }
+         ],
+        "location_types": [
+            "home"
+        ]
+    }], 
+    "name": "West US", 
+    "genders": [
+        0
+    ], 
+    "ages_ranges": [
+        {
+            "max": 65, 
+            "min": 13
+        }
+    ]
+}
