@@ -237,6 +237,7 @@ So it will collect the audience for all of the combinations specified in the inp
 1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
 
 ### Change Log
+* 0.1j - Get more informative dataframes from: get_behavior_dataframe, get_interests_given_query, get_search_targeting_from_query_dataframe
 * 0.1i - Errors more understable and some small fixes.
 * 0.1h - AND working for behavior. Thanks @ianbstewart.
 * 0.1g - Besides MAU, now we also captures DAU. Thanks @VatsalaSingh.

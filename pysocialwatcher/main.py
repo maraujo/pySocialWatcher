@@ -27,8 +27,7 @@ class PySocialWatcher:
         }
         response = send_request(constants.TARGETING_SEARCH_URL.format(account_id), request_payload)
         json_response = load_json_data_from_response(response)
-        dataframe_response = get_dataframe_from_json_response_query_data(json_response)
-        return dataframe_response
+        return pd.DataFrame(json_response["data"])
 
     @staticmethod
     def get_behavior_dataframe():
@@ -39,8 +38,7 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        behaviors_dataframe = get_dataframe_from_json_response_query_data(json_response)
-        return behaviors_dataframe
+        return pd.DataFrame(json_response["data"])
 
     @staticmethod
     def get_interests_given_query(interest_query):
@@ -51,8 +49,7 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        interests_dataframe = get_dataframe_from_json_response_query_data(json_response)
-        return interests_dataframe
+        return pd.DataFrame(json_response["data"])
 
     @staticmethod
     def get_geo_locations_given_query_and_location_type(query, location_types):
@@ -64,8 +61,7 @@ class PySocialWatcher:
         }
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
-        locations_dataframe = get_dataframe_from_json_response_query_data(json_response)
-        return locations_dataframe
+        return pd.DataFrame(json_response["data"])
 
     @staticmethod
     def print_search_targeting_from_query_dataframe(query):
