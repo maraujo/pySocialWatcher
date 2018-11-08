@@ -222,6 +222,22 @@ So it will collect the audience for all of the combinations specified in the inp
     |  3 | 2511352 | New Castle              |               1 |                 1 | city   |
     ....
 
+
+#### Find KML Given Location Key and Location Type
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcherAPI.get_kml_given_geolocation("countries", ["BR","CL","AT","US","QA"])
+    +----+---------------------------------------------------+-------------------+
+    |    |     kml                                           | name              |
+    |----+---------------------------------------------------+-------------------+
+    |  0 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Brazil            |
+    |  1 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Chile             |
+    |  2 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Austria           |
+    |  3 | <Polygon><outerBoundaryIs><LinearRing><coordin... | United States     |
+    ....
+
+
 #### Advaced Configurations
 ##### Change Sleep time between requests to 10s:
 

@@ -486,4 +486,12 @@ def send_dumb_query(token, account):
         print_warning("Account:" + account)
         raise  error
 
+def from_FB_polygons_to_KML(poly):
+    out = ""
+    for p in poly:
+        out += "<Polygon><outerBoundaryIs><LinearRing><coordinates>"
+        for pair in p:
+            out += " %s,%s" % (pair["lng"],pair["lat"])
+        out += "</coordinates></LinearRing></outerBoundaryIs></Polygon>"
+    return out
 

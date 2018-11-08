@@ -64,6 +64,35 @@ class PySocialWatcher:
         return pd.DataFrame(json_response["data"])
 
     @staticmethod
+    def get_kml_given_geolocation(location_type, list_location_codes):
+        """
+        location_type: countries, regions, cities, zips, places, custom_locations, geo_markets, electoral_districts, country_groups
+        location_code: region code, country two letters accronym, so on.
+
+        Example: location_type = "countries", location_code = ["BR","CL","AT","US","QA"]
+        """
+        request_payload = {
+            'type': 'adgeolocationmeta',
+            location_type: [[ list_location_codes ]],
+            'show_polygons_and_coordinates': 'true',
+            'access_token': get_token_and_account_number_or_wait()[0]
+        }
+        response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
+        json_response = load_json_data_from_response(response)
+        df = pd.DataFrame(json_response["data"])
+        if df.empty:
+            return
+
+        ans = {"name":[], "kml":[]}
+        for location in df[location_type]:
+            ans["name"].append(location["name"])
+            if "polygons" in location:
+                ans["kml"].append(from_FB_polygons_to_KML(location["polygons"]))
+            else:
+                ans["kml"].append("Polygons not found.")
+        return pd.DataFrame(ans)
+
+    @staticmethod
     def print_search_targeting_from_query_dataframe(query):
         search_dataframe = PySocialWatcher.get_search_targeting_from_query_dataframe(query)
         print_dataframe(search_dataframe)
