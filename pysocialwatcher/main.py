@@ -52,13 +52,20 @@ class PySocialWatcher:
         return pd.DataFrame(json_response["data"])
 
     @staticmethod
-    def get_geo_locations_given_query_and_location_type(query, location_types):
+    def get_geo_locations_given_query_and_location_type(query, location_types, region_id=None, country_code=None, limit=5000):
         request_payload = {
             'type': 'adgeolocation',
             'location_types': location_types,
             'q': query,
+            'limit': limit,
             'access_token': get_token_and_account_number_or_wait()[0]
         }
+        if region_id is not None:
+            request_payload["region_id"] = region_id
+
+        if country_code is not None:
+            request_payload["country_code"] = country_code
+
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
         return pd.DataFrame(json_response["data"])
@@ -98,8 +105,8 @@ class PySocialWatcher:
         print_dataframe(search_dataframe)
 
     @staticmethod
-    def print_geo_locations_given_query_and_location_type(query, location_types):
-        geo_locations = PySocialWatcher.get_geo_locations_given_query_and_location_type(query, location_types)
+    def print_geo_locations_given_query_and_location_type(query, location_types, region_id=None, country_code=None):
+        geo_locations = PySocialWatcher.get_geo_locations_given_query_and_location_type(query, location_types, region_id=region_id, country_code=country_code)
         print_dataframe(geo_locations)
 
     @staticmethod
