@@ -70,7 +70,7 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     >>> from pysocialwatcher import watcherAPI 
     >>> watcher = watcherAPI() 
     >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json")
+    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
 
 ### How it works (slides):
 Check the slides: https://goo.gl/WzE9ic
