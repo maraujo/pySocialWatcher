@@ -201,24 +201,24 @@ def save_response_in_dataframe(shared_queue_list, df):
         df.loc[result_index, "response"] = result_response
 
 
-def save_skeleton_dataframe(dataframe):
+def save_skeleton_dataframe(dataframe, output_dir = ""):
     print_info("Saving Skeleton file: " + constants.DATAFRAME_SKELETON_FILE_NAME)
-    dataframe.to_csv(constants.DATAFRAME_SKELETON_FILE_NAME)
+    dataframe.to_csv(output_dir + constants.DATAFRAME_SKELETON_FILE_NAME)
 
-def save_temporary_dataframe(dataframe):
+def save_temporary_dataframe(dataframe, output_dir = ""):
     print_info("Saving temporary file: " + constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
-    dataframe.to_csv(constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
+    dataframe.to_csv(output_dir + constants.DATAFRAME_TEMPORARY_COLLECTION_FILE_NAME)
 
 
-def save_after_collecting_dataframe(dataframe):
+def save_after_collecting_dataframe(dataframe, output_dir = ""):
     print_info("Saving after collecting file: " + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME)
-    dataframe.to_csv(constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME)
+    dataframe.to_csv(output_dir + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME)
 
-def save_after_collecting_dataframe_without_full_response(dataframe):
+def save_after_collecting_dataframe_without_full_response(dataframe, output_dir = ""):
     dataframe = dataframe.drop('response', 1)
     print_dataframe(dataframe)
     print_info("Saving after collecting file: " + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE)
-    dataframe.to_csv(constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE)
+    dataframe.to_csv(output_dir + constants.DATAFRAME_AFTER_COLLECTION_FILE_NAME_WITHOUT_FULL_RESPONSE)
 
 
 def print_warning(message):
