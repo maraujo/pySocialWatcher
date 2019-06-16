@@ -52,13 +52,20 @@ class PySocialWatcher:
         return pd.DataFrame(json_response["data"])
 
     @staticmethod
-    def get_geo_locations_given_query_and_location_type(query, location_types):
+    def get_geo_locations_given_query_and_location_type(query, location_types, region_id=None, country_code=None, limit=5000):
         request_payload = {
             'type': 'adgeolocation',
             'location_types': location_types,
             'q': query,
+            'limit': limit,
             'access_token': get_token_and_account_number_or_wait()[0]
         }
+        if region_id is not None:
+            request_payload["region_id"] = region_id
+
+        if country_code is not None:
+            request_payload["country_code"] = country_code
+
         response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
         json_response = load_json_data_from_response(response)
         return pd.DataFrame(json_response["data"])
@@ -98,8 +105,8 @@ class PySocialWatcher:
         print_dataframe(search_dataframe)
 
     @staticmethod
-    def print_geo_locations_given_query_and_location_type(query, location_types):
-        geo_locations = PySocialWatcher.get_geo_locations_given_query_and_location_type(query, location_types)
+    def print_geo_locations_given_query_and_location_type(query, location_types, region_id=None, country_code=None):
+        geo_locations = PySocialWatcher.get_geo_locations_given_query_and_location_type(query, location_types, region_id=region_id, country_code=country_code)
         print_dataframe(geo_locations)
 
     @staticmethod
@@ -124,7 +131,7 @@ class PySocialWatcher:
         return json_data
 
     @staticmethod
-    def build_collection_dataframe(input_data_json):
+    def build_collection_dataframe(input_data_json, output_dir = ""):
         print_info("Building Collection Dataframe")
         collection_dataframe = build_initial_collection_dataframe()
         collection_queries = []
@@ -137,12 +144,12 @@ class PySocialWatcher:
         dataframe = add_timestamp(dataframe)
         dataframe = add_published_platforms(dataframe, input_data_json)
         if constants.SAVE_EMPTY:
-            dataframe.to_csv(constants.DATAFRAME_SKELETON_FILE_NAME)
-        save_skeleton_dataframe(dataframe)
+            dataframe.to_csv(output_dir + constants.DATAFRAME_SKELETON_FILE_NAME)
+        save_skeleton_dataframe(dataframe, output_dir)
         return dataframe
 
     @staticmethod
-    def perform_collection_data_on_facebook(collection_dataframe):
+    def perform_collection_data_on_facebook(collection_dataframe, output_dir = ""):
         # Call each requests builded
         processed_rows_after_saved = 0
         dataframe_with_uncompleted_requests = collection_dataframe[pd.isnull(collection_dataframe["response"])]
@@ -156,14 +163,14 @@ class PySocialWatcher:
             processed_rows_after_saved += len(responses_list)
             # Save a temporary file
             if processed_rows_after_saved >= constants.SAVE_EVERY:
-                save_temporary_dataframe(collection_dataframe)
+                save_temporary_dataframe(collection_dataframe, output_dir)
                 processed_rows_after_saved = 0
             # Update not_completed_experiments
             dataframe_with_uncompleted_requests = collection_dataframe[pd.isnull(collection_dataframe["response"])]
         print_info("Data Collection Complete")
-        save_temporary_dataframe(collection_dataframe)
+        save_temporary_dataframe(collection_dataframe, output_dir)
         post_process_collection(collection_dataframe)
-        save_after_collecting_dataframe(collection_dataframe)
+        save_after_collecting_dataframe(collection_dataframe, output_dir)
         return collection_dataframe
 
     @staticmethod
@@ -192,12 +199,12 @@ class PySocialWatcher:
                 add_list_of_ANDS_to_input(list_of_ANDS_between_groups, input_data_json)
 
     @staticmethod
-    def run_data_collection(json_input_file_path):
+    def run_data_collection(json_input_file_path, output_dir = ""):
         input_data_json = PySocialWatcher.read_json_file(json_input_file_path)
         PySocialWatcher.expand_input_if_requested(input_data_json)
         PySocialWatcher.check_input_integrity(input_data_json)
-        collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json)
-        collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe)
+        collection_dataframe = PySocialWatcher.build_collection_dataframe(input_data_json, output_dir)
+        collection_dataframe = PySocialWatcher.perform_collection_data_on_facebook(collection_dataframe, output_dir)
         return collection_dataframe
 
     @staticmethod
