@@ -84,7 +84,7 @@ def send_request(url, params, tryNumber = 0):
         print_warning("Maxium Number of Tries reached. Failing.")
         raise FatalException("Maximum try reached.")
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, timeout=constants.REQUESTS_TIMEOUT)
     except Exception as error:
         raise RequestException(error.message)
     if response.status_code == 200:
