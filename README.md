@@ -261,6 +261,7 @@ _Note: Assumes that the directory already exists. Filepath is added to the begin
 1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
 
 ### Change Log
+* 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312 for previous commits.
 * 0.1j - Get more informative dataframes from: get_behavior_dataframe, get_interests_given_query, get_search_targeting_from_query_dataframe
 * 0.1i - Errors more understable and some small fixes.
 * 0.1h - AND working for behavior. Thanks @ianbstewart.
