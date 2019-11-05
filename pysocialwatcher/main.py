@@ -56,10 +56,13 @@ class PySocialWatcher:
         request_payload = {
             'type': 'adgeolocation',
             'location_types': location_types,
-            'q': query,
             'limit': limit,
             'access_token': get_token_and_account_number_or_wait()[0]
         }
+        
+        if query is not None:
+            request_payload['q'] = query
+        
         if region_id is not None:
             request_payload["region_id"] = region_id
 
