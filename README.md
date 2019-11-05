@@ -222,7 +222,21 @@ So it will collect the audience for all of the combinations specified in the inp
     |  3 | 2511352 | New Castle              |               1 |                 1 | city   |
     ....
 
+#### Find all Geo Locations Given Location Type and Country
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcherAPI.print_geo_locations_given_query_and_location_type(None, ["region"], country_code='ID')
 
+    +----+----------------+----------------+-------+------------------------------+-----------------+-------------------+--------+
+    |    | country_code   | country_name   |   key | name                         | supports_city   | supports_region   | type   |
+    |----+----------------+----------------+-------+------------------------------+-----------------+-------------------+--------|
+    |  0 | ID             | Indonesia      |  1662 | Bali                         | True            | True              | region |
+    |  1 | ID             | Indonesia      |  1676 | East Nusa Tenggara           | True            | True              | region |
+    |  2 | ID             | Indonesia      |  1685 | West Java                    | True            | True              | region |
+    |  3 | ID             | Indonesia      |  1675 | West Nusa Tenggara           | True            | True              | region |
+    ...
+    
 #### Find KML Given Location Key and Location Type
     >>> from pysocialwatcher import watcherAPI 
     >>> watcher = watcherAPI() 
