@@ -1,4 +1,5 @@
 # pySocialWatcher
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ### A Social Data Collector from Facebook Marketing API
 #### I'm more than pleased that many teams used this library. But I need your help to support it. Please feel free to pull requests that solve issues. Unfortunatelly, my time is very very limited to keep updating this repository.
 #### If this package helps your research somehow, reference this paper:
