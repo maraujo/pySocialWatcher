@@ -274,6 +274,11 @@ _Note: Assumes that the directory already exists. Filepath is added to the begin
 
 ### Potential Issues:
 1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
+2. Various users are getting issues with this package. Since I personally do not use it more, I recommend the fork from Joao Palotti.
+   - I suggest you have a look at this resource here: https://worldbank.github.io/connectivity_mapping/intro.html
+   - It is a small tutorial describing how to use pySocialWatcher. Note that you will need to clone my fork (https://github.com/joaopalotti/pySocialWatcher), instead of the original repo. The fork includes support for Python 3 (Python 3.7 works for sure, very likely it should support Python 3.8 as well) and utilities to create JSON files and to post-process your collection.
+
+
 
 ### Change Log
 * 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312 for previous commits.
