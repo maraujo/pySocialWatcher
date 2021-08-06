@@ -41,6 +41,17 @@ class PySocialWatcher:
         return pd.DataFrame(json_response["data"])
 
     @staticmethod
+    def get_income_dataframe():
+        request_payload = {
+            'type': 'adTargetingCategory',
+            'class': "income",
+            'access_token': get_token_and_account_number_or_wait()[0]
+        }
+        response = send_request(constants.GRAPH_SEARCH_URL, request_payload)
+        json_response = load_json_data_from_response(response)
+        return pd.DataFrame(json_response["data"])
+
+    @staticmethod
     def get_interests_given_query(interest_query):
         request_payload = {
             'type': 'adinterest',
@@ -59,10 +70,10 @@ class PySocialWatcher:
             'limit': limit,
             'access_token': get_token_and_account_number_or_wait()[0]
         }
-        
+
         if query is not None:
             request_payload['q'] = query
-        
+
         if region_id is not None:
             request_payload["region_id"] = region_id
 
@@ -121,6 +132,11 @@ class PySocialWatcher:
     def print_behaviors_list():
         behaviors = PySocialWatcher.get_behavior_dataframe()
         print_dataframe(behaviors)
+
+    @staticmethod
+    def print_income_list():
+        income = PySocialWatcher.get_income_dataframe()
+        print_dataframe(income)
 
     @staticmethod
     def read_json_file(file_path):
