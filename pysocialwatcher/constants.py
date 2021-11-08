@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
-REACHESTIMATE_URL = "https://graph.facebook.com/v11.0/act_{}/delivery_estimate"
-GRAPH_SEARCH_URL = "https://graph.facebook.com/v11.0/search"
-TARGETING_SEARCH_URL = "https://graph.facebook.com/v11.0/act_{}/targetingsearch"
+REACHESTIMATE_URL = "https://graph.facebook.com/v12.0/act_{}/delivery_estimate"
+GRAPH_SEARCH_URL = "https://graph.facebook.com/v12.0/search"
+TARGETING_SEARCH_URL = "https://graph.facebook.com/v12.0/act_{}/targetingsearch"
 SAVE_EMPTY = True
 SLEEP_TIME = 8
 SAVE_EVERY = 300
@@ -42,6 +42,8 @@ TARGETING_SPEC_FIELD = "targeting_spec"
 RESPONSE_FIELD = "response"
 DAU_AUDIENCE_FIELD = "dau_audience"
 MAU_AUDIENCE_FIELD = "mau_audience"
+MAU_UPPER_AUDIENCE_FIELD = "mau_audience_upper_bound"
+MAU_LOWER_AUDIENCE_FIELD = "mau_audience_lower_bound"
 ALLFIELDS_FIELD = "all_fields"
 INPUT_NAME_FIELD = "name"
 PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD = "perform_AND_between_groups"
@@ -81,7 +83,7 @@ INPUT_FIELDS_TO_COMBINE = [
     INPUT_HOUSEHOLD_COMPOSITION_FIELD
 ]
 
-DATAFRAME_COLUMNS = [INPUT_NAME_FIELD] + INPUT_FIELDS_TO_COMBINE + [ALLFIELDS_FIELD, TARGETING_FIELD, RESPONSE_FIELD, DAU_AUDIENCE_FIELD, MAU_AUDIENCE_FIELD ]
+DATAFRAME_COLUMNS = [INPUT_NAME_FIELD] + INPUT_FIELDS_TO_COMBINE + [ALLFIELDS_FIELD, TARGETING_FIELD, RESPONSE_FIELD, DAU_AUDIENCE_FIELD, MAU_AUDIENCE_FIELD, MAU_UPPER_AUDIENCE_FIELD, MAU_LOWER_AUDIENCE_FIELD ]
 
 ALLOWED_FIELDS_IN_INPUT = DATAFRAME_COLUMNS + [PERFORM_AND_BETWEEN_GROUPS_INPUT_FIELD] + [API_PUBLISHER_PLATFORMS_FIELD]
 
