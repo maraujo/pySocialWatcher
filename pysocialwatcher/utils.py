@@ -340,7 +340,21 @@ def process_dau_audience_from_response(literal_response):
 
 def process_mau_audience_from_response(literal_response):
     aud = json.loads(literal_response)["data"][0]
-    audience=aud["estimate_mau"]
+    if "estimate_mau" in aud:
+        audience=int(aud["estimate_mau"])
+    else:
+        audience=None
+    return audience
+
+def process_mau_upper_audience_from_response(literal_response):
+    aud = json.loads(literal_response)["data"][0]
+    audience=aud["estimate_mau_upper_bound"]
+    return int(audience)
+
+
+def process_mau_lower_audience_from_response(literal_response):
+    aud = json.loads(literal_response)["data"][0]
+    audience=aud["estimate_mau_lower_bound"]
     return int(audience)
 
 
@@ -353,6 +367,12 @@ def post_process_collection(collection_dataframe):
     collection_dataframe["mau_audience"] = collection_dataframe["response"].apply(
         lambda x: process_mau_audience_from_response(x))
 
+    collection_dataframe["mau_audience_upper_bound"] = collection_dataframe["response"].apply(
+        lambda x: process_mau_upper_audience_from_response(x))
+
+    collection_dataframe["mau_audience_lower_bound"] = collection_dataframe["response"].apply(
+        lambda x: process_mau_lower_audience_from_response(x))
+    
     collection_dataframe = add_mocked_column(collection_dataframe)
     return collection_dataframe
 
