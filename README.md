@@ -281,7 +281,7 @@ _Note: Assumes that the directory already exists. Filepath is added to the begin
 
 
 ### Change Log
-* 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312 for previous commits.
+* 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312, @mfatehkia for previous commits.
 * 0.1j - Get more informative dataframes from: get_behavior_dataframe, get_interests_given_query, get_search_targeting_from_query_dataframe
 * 0.1i - Errors more understable and some small fixes.
 * 0.1h - AND working for behavior. Thanks @ianbstewart.
