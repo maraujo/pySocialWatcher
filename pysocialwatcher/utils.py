@@ -96,7 +96,7 @@ def send_request(url, params, tryNumber = 0):
 def call_request_fb(row, token, account):
     target_request = row[constants.TARGETING_FIELD]
     payload = {
-        'currency': 'USD',
+        #'currency': 'USD',
         'optimize_for': "NONE",
         'optimization_goal': "AD_RECALL_LIFT",
         'targeting_spec': json.dumps(target_request),
