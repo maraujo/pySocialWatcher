@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
-REACHESTIMATE_URL = "https://graph.facebook.com/v12.0/act_{}/delivery_estimate"
-GRAPH_SEARCH_URL = "https://graph.facebook.com/v12.0/search"
-TARGETING_SEARCH_URL = "https://graph.facebook.com/v12.0/act_{}/targetingsearch"
+REACHESTIMATE_URL = "https://graph.facebook.com/v14.0/act_{}/delivery_estimate"
+GRAPH_SEARCH_URL = "https://graph.facebook.com/v14.0/search"
+TARGETING_SEARCH_URL = "https://graph.facebook.com/v14.0/act_{}/targetingsearch"
 SAVE_EMPTY = True
 SLEEP_TIME = 8
 SAVE_EVERY = 300
