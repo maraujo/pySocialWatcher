@@ -2,7 +2,7 @@ codecov==2.0.5
 coloredlogs==5.2
 coverage==4.2
 cython==0.27.3
-numpy==1.11.1
+numpy==1.21.0
 pandas==0.19.0
 pytest_cov==2.4.0
 requests==2.20.0
