@@ -1,4 +1,4 @@
-codecov==2.0.5
+codecov==2.0.16
 coloredlogs==5.2
 coverage==4.2
 cython==0.27.3
