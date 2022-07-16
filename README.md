@@ -38,11 +38,14 @@ Examples of research question that it can answer:
 * For each european country, get how many people are interested in Science?
 * Get how many people in each GCC country who is Graduated AND is interested in Football, and how many is not interested in Football breakdown by: gender, age range, scholarity, language and citizenship.
 
+##### Tutorial
+A guide for getting started with Facebook Ads API data collection can be found here: https://worldbank.github.io/connectivity_mapping/intro.html Please note that you will need to clone a fork (https://github.com/joaopalotti/pySocialWatcher), instead of the original repo. The fork includes support for Python 3 (Python 3.7 works for sure, very likely it should support Python 3.8 as well) and utilities to create JSON files and to post-process your collection.
 
-##### Facebook Marketing API Refereces page:
+##### Facebook Marketing API References page:
 Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
 
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
+
 ### Limitations:
 * Current supported API fields are listed below:
     ```
